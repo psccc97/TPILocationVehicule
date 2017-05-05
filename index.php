@@ -16,5 +16,7 @@ if (empty($action)) {
     switch ($action) {
         case 'accueil':
             require_once 'controllers/controllerIndex.php';
-            break;      
+            break;
+        case 'connexion':
+            require_once 'controllers/controllerConnexion.php';
     }
