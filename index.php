@@ -9,12 +9,12 @@
 */
 
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_URL);
-
-if(empty($action)){
-    $action = '';
+if (empty($action)) {
+    $action = 'accueil';
 }
 
-switch ($action){
-    case 'fff':
-    break;
-}
+    switch ($action) {
+        case 'accueil':
+            require_once 'controllers/controllerIndex.php';
+            break;      
+    }

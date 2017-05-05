@@ -4,7 +4,7 @@ define('HOST', "localhost");
 
 
 function connectDb() {
-    $dbname = "bd_blog_facebook";
+    $dbname = "bdd_location_tpi";
     $user = "userTPI";
     $password = "Super";
     $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
