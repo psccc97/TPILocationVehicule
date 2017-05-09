@@ -8,15 +8,30 @@
     <body>
         <div class="container">
             <!-- Navigation -->
-           <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">WebSiteName</a>
                     </div>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>                        
-                        <li><a href="#">Utilisateur</a></li>                           
-                        <li><a href="#">Admin</a></li>                          
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Utilisateur<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Mes véhicules en location</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mes véhicules reservés</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Mettre en location</a>
+                                </li>
+                            </ul>
+                        </li>                        
+                        <li><a href="#">Administrateur</a></li>                          
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
@@ -36,6 +51,11 @@
                     <a class="btn btn-default" href="#" role="button"> Détails</a>
                 </div>
             </div>
-        </div>        
+        </div> 
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+        <script src="bootstrap/js/jquery-3.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
