@@ -7,6 +7,7 @@
     </head>
     <body>
         <div class="container">
+            <!-- Navigation -->
            <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -23,7 +24,18 @@
                        <!-- <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->                      
                     </ul>
                 </div>
-            </nav> 
-        </div>
+            </nav>
+            <div class="" ></div>
+            <!-- Affichage véhicules -->
+            <div class="jumbotron">
+                <div class="col-md-7">
+                    <!-- Image de la voiture -->
+                </div>
+                <div class="col-md-5">
+                    <!-- Affichage des diférent données sur le véhicle -->
+                    <a class="btn btn-default" href="#" role="button"> Détails</a>
+                </div>
+            </div>
+        </div>        
     </body>
 </html>
