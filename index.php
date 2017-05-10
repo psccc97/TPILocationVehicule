@@ -19,4 +19,8 @@ if (empty($action)) {
             break;
         case 'connexion':
             require_once 'controllers/controllerConnexion.php';
+            break;
+        case 'details':
+            require_once 'controllers/controllerDetails.php';
+            break;
     }

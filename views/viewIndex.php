@@ -1,30 +1,66 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <title></title>
-    </head>
+    <?php include 'include/header.php'; ?>
     <body>
         <div class="container">
             <!-- Navigation -->
             <?php include 'include/navBar.php'; ?>
-            <div class="" ></div>
-            <!-- Affichage véhicules -->
-            <div class="jumbotron">
-                <div class="col-md-7">
-                    <!-- Image de la voiture -->
+            <legend>Accueil</legend>
+            <form class="form-inline" action="#" method="post">
+
+                <section class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            <select class="form-control"></select>
+                        </div>
+                    </div>                    
+                    <input type="submit" name="recherche" value="Rechercher" class="btn btn-primary">                   
+                </section>                
+            </form>                        
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <h3><!-- Nom voiture-->Voiture</h3>
+                    <img src="img/voiture.png" alt="...">
+                    <div class="caption">                            
+                        <p><!-- Description on donnée -->sdfagasdfgadf</p>
+                        <p>
+                            <a href="details.html" class="btn btn-primary" role="button">Détails</a> 
+                            <a href="#" class="btn btn-default" role="button">Réserver</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-5">
-                    <!-- Affichage des diférent données sur le véhicle -->
-                    <a class="btn btn-default" href="#" role="button"> Détails</a>
-                </div>
-            </div>
-        </div> 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-        <script src="bootstrap/js/jquery-3.2.1.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+            </div>                
+        </div>
+    </div>        
+</body>
+<?php include 'include/footer.php'; ?>
 </html>

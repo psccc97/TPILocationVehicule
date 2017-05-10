@@ -9,17 +9,12 @@
 */
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <title></title>
-    </head>
+    <?php include 'include/header.php'; ?>
     <body>
         <div class="container">
             <!-- Navigation -->
             <?php include 'include/navBar.php'; ?>
-            <form class="form-horizontal" action="logincheck.php" method="post">
+            <form class="form-horizontal" action="#" method="post">
                 <fieldset>
 
                     <!-- Form Name -->
