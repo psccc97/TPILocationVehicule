@@ -1,10 +1,14 @@
 <?php
 
-define('HOST', "localhost");
 
-
-function connectDb() {
-    $dbname = "bdd_location_tpi";
+/**
+ * C'est une fonction qui permet de se connecter à la base de donnée
+ * @staticvar type $bd
+ * @return \PDO
+ */
+function connexionBdd() {
+    define('HOST', "localhost");
+    $dbname = "bdd_location_vehicule";
     $user = "userTPI";
     $password = "Super";
     $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;

@@ -1,3 +1,14 @@
+<?php
+/*
+ * Script : view viewIndex.php
+ * Auteur: Pascucci Lino
+ * Date: 9.05.2017
+ * Version : 1.0
+ * Description :Page principale du site
+*/
+
+session_start();
+?>
 <html>
     <?php include 'include/header.php'; ?>
     <body>

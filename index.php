@@ -1,11 +1,11 @@
 <?php
 
 /*
- * User: lino
- * Date: 27.04.2017
- * Time: 11:03
+ * Script : index.php
+ * Auteur: Pascucci Lino
+ * Date: 9.05.2017
  * Version : 1.0
- * Description :controleur principale il permet de rediriger dans les différents controleurs
+ * Description :controlleur principale il permet de rediriger dans les différents controlleurs
 */
 
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_URL);
@@ -23,4 +23,6 @@ if (empty($action)) {
         case 'details':
             require_once 'controllers/controllerDetails.php';
             break;
+        case 'deconnexion':
+            require_once 'controllers/deconnexion.php';
     }

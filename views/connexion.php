@@ -1,11 +1,11 @@
 <?php
 
 /*
- * User: lino
- * Date: 27.04.2017
- * Time: 11:03
+ * Fichier : view connexion.php
+ * Auteur: Pascucci Lino
+ * Date: 9.05.2017
  * Version : 1.0
- * Description :controleur principale il permet de rediriger dans les différents controleurs
+ * Description : contient le formulaire de connexion
 */
 ?>
 <html>
@@ -14,7 +14,7 @@
         <div class="container">
             <!-- Navigation -->
             <?php include 'include/navBar.php'; ?>
-            <form class="form-horizontal" action="#" method="post">
+            <form class="form-horizontal" action="controllers/verifConnexion.php" method="post">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="pseudo">Pseudo</label>  
                         <div class="col-md-4">
-                            <input id="pseudo" name="pseudo" type="text" placeholder="pseudo" class="form-control input-md" required="" value="Lino">
+                            <input id="pseudo" name="prenom" type="text" placeholder="pseudo" class="form-control input-md" required="" value="Lino">
 
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="password">Password</label>
                         <div class="col-md-4">
-                            <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+                            <input id="password" name="mdp" type="password" placeholder="" class="form-control input-md" required="">
 
                         </div>
                     </div>
