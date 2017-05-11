@@ -11,7 +11,7 @@
 require_once 'connexionbdd.php';
 
 /**
- * Cette récupère les donnée de la table utilisateur en fonction des paramètres
+ * Cette fonction récupère les donnée de la table utilisateur en fonction des paramètres
  * @param type $pseudo : le prenom de l'utilisateur
  * @param type $mdp : le mot de passe de l'utilisateur
  * @return type
@@ -28,7 +28,10 @@ function verifIdentificationUtilisateur($prenom, $mdp)
     return $reslt;
     
 }
-
+/**
+ * Cette fonction récupèer toute les données du véhicule
+ * @return type
+ */
 function recupereVehicules()
 {
     $bdd = connexionBdd();
@@ -43,6 +46,11 @@ function recupereVehicules()
     return $reslt;
 }
 
+/**
+ * 
+ * @param type $idVehicule
+ * @return type
+ */
 function recupereVehicleSelonId($idVehicule)
 {
     $bdd = connexionBdd();
@@ -57,4 +65,9 @@ function recupereVehicleSelonId($idVehicule)
     $requete->execute();
     $reslt = $requete->fetch(PDO::FETCH_ASSOC);
     return $reslt;
+}
+
+function louerVehicule()
+{
+   
 }

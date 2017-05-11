@@ -1,12 +1,11 @@
 <?php
-
 /*
  * Fichier : view connexion.php
  * Auteur: Pascucci Lino
  * Date: 9.05.2017
  * Version : 1.0
  * Description : contient le formulaire de connexion
-*/
+ */
 ?>
 <html>
     <?php include 'include/header.php'; ?>
@@ -37,15 +36,15 @@
 
                         </div>
                     </div>
-                    
-                    <?php if(isset($msgError)): ?>
-                    <div class="form-group">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
+
+                    <?php if (isset($msgError)): ?>
+                        <div class="form-group">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
+                            </div>
+
                         </div>
-                      
-                    </div>
                     <?php endif; ?>
                     <!-- Button -->
                     <div class="form-group">
@@ -58,9 +57,6 @@
                 </fieldset>
             </form>            
             <div/>   
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+            <?php include 'include/footer.php'; ?> 
     </body>
 </html>

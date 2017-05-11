@@ -41,7 +41,7 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>Volume utile </td>
-                                    <td><?php echo $details['volumeUtile']; ?></td>
+                                    <td><?php echo $details['volumeUtile']; ?> m3</td>
                                 </tr>
                                 <tr>
                                     <td>Motorisation </td>
