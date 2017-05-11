@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="accueil.html">Accueil</a></li>
             <?php if (isset($_SESSION['prenom'])) : ?>
-                <?php if ($_SESSION['statut'] == 0 || $_SESSION['statut'] == 1) : ?>
+                <?php if ($_SESSION['status'] == 0 || $_SESSION['status'] == 1) : ?>
                     <li class="dropdown">                            
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Utilisateur<span class="caret"></span>
@@ -26,7 +26,7 @@
                     </li>
                 <?php
                 endif;
-                if ($_SESSION['statut'] == 1) :
+                if ($_SESSION['status'] == 1) :
                     ?>
                     <li><a href="#">Administrateur</a></li>
                 <?php endif; ?>

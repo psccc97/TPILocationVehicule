@@ -25,4 +25,6 @@ if (empty($action)) {
             break;
         case 'deconnexion':
             require_once 'controllers/deconnexion.php';
+            break;
+        
     }

@@ -16,7 +16,7 @@ require_once 'connexionbdd.php';
  * @param type $mdp : le mot de passe de l'utilisateur
  * @return type
  */
-function verifIndentificationUtilisateur($prenom, $mdp)
+function verifIdentificationUtilisateur($prenom, $mdp)
 {
     $bdd = connexionBdd();
     $sql = "SELECT * FROM utilisateurs WHERE Prenom = :prenom AND motDePasse = :mdp";
@@ -27,4 +27,18 @@ function verifIndentificationUtilisateur($prenom, $mdp)
     $reslt = $requete->fetch(PDO::FETCH_ASSOC);
     return $reslt;
     
+}
+
+function recupereVehicules()
+{
+    $bdd = connexionBdd();
+    $sql = "SELECT idVehicule, Type, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, nbrKilometrage, nomMarque, nomModele".
+            " FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k ".
+            "WHERE v.idMarque = m.idMarque".
+            " AND v.idModele = mo.idModele ".
+            "AND v.idKilometrage = k.idKilometrage";
+    $requete = $bdd->prepare($sql);
+    $requete->execute();
+    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+    return $reslt;
 }

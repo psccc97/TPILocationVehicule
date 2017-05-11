@@ -14,7 +14,7 @@
         <div class="container">
             <!-- Navigation -->
             <?php include 'include/navBar.php'; ?>
-            <form class="form-horizontal" action="controllers/verifConnexion.php" method="post">
+            <form class="form-horizontal" action="connexion.html" method="post">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="pseudo">Pseudo</label>  
                         <div class="col-md-4">
-                            <input id="pseudo" name="prenom" type="text" placeholder="pseudo" class="form-control input-md" required="" value="Lino">
+                            <input id="pseudo" name="prenom" type="text" placeholder="Prenom" class="form-control input-md" required="">
 
                         </div>
                     </div>
@@ -37,7 +37,16 @@
 
                         </div>
                     </div>
-
+                    
+                    <?php if(isset($msgError)): ?>
+                    <div class="form-group">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <span><?php echo $msgError; ?></span>
+                        </div>
+                      
+                    </div>
+                    <?php endif; ?>
                     <!-- Button -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="connexion"></label>
