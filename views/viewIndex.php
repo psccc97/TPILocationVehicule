@@ -5,7 +5,7 @@
  * Date: 9.05.2017
  * Version : 1.0
  * Description :Page principale du site
-*/
+ */
 
 session_start();
 ?>
@@ -56,20 +56,24 @@ session_start();
                     </div>                    
                     <input type="submit" name="recherche" value="Rechercher" class="btn btn-primary">                   
                 </section>                
-            </form>                        
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <h3><!-- Nom voiture-->Voiture</h3>
-                    <img src="img/voiture.png" alt="...">
-                    <div class="caption">                            
-                        <p><!-- Description on donnée -->sdfagasdfgadf</p>
-                        <p>
-                            <a href="details.html" class="btn btn-primary" role="button">Détails</a> 
-                            <a href="#" class="btn btn-default" role="button">Réserver</a>
-                        </p>
+            </form>
+            <?php foreach ($vehicules as $vehicule): ?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>
+                        <img src="img/<?php echo $vehicule['Image'] ?>" class="img-responsive">
+                        <div class="caption">       
+                            <p>Kilométrages : <?php echo $vehicule['nbrKilometrage'] ?></p>
+                            <p>Année : <?php echo $vehicule['Annee'] ?></p>
+                            <p> Description :<?php echo $vehicule['Description'] ?></p>
+                            <p>
+                                <a href="details-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-primary" role="button">Détails</a> 
+                                <a href="#" class="btn btn-default" role="button">Réserver</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>                
+            <?php endforeach; ?>
         </div>
     </div>        
 </body>

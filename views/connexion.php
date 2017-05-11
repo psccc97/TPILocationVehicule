@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
-                            <span><?php echo $msgError; ?></span>
+                            <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
                         </div>
                       
                     </div>

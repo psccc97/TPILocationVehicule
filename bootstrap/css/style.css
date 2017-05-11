@@ -8,7 +8,8 @@ and open the template in the editor.
     Author     : PASCUCCIL_INFO
 */
 
-.image
+.error
 {
-    margin: auto;    
+    color: red;
+    font-weight: bold;
 }
