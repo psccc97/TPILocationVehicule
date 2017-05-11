@@ -1,7 +1,7 @@
 <?php
 
-require_once 'models/bddfunction.php';
+require_once 'models/bddfunctions.php';
 
-$detailsVehicule = recupereVehicleSelonId($_GET['id']);
+$details = recupereVehicleSelonId($_GET['id']);
 
 include 'views/viewDetails.php';

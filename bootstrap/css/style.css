@@ -8,8 +8,9 @@ and open the template in the editor.
     Author     : PASCUCCIL_INFO
 */
 
-.error
+.textarea
 {
-    color: red;
-    font-weight: bold;
+    resize: none;
+    width: 500px;
+    height: 350px;
 }

@@ -46,14 +46,14 @@ function recupereVehicules()
 function recupereVehicleSelonId($idVehicule)
 {
     $bdd = connexionBdd();
-    $sql = "SELECT idVehicule, Type, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, nbrKilometrage, nomMarque, nomModele, Image, Description".
-            " FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k ".
-            "WHERE v.idMarque = m.idMarque".
-            " AND v.idModele = mo.idModele ".
-            "AND v.idKilometrage = k.idKilometrage".
+    $sql = "SELECT idVehicule, Type, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, nbrKilometrage, nomMarque, nomModele, Image, Description ".
+            "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k ".
+            "WHERE v.idMarque = m.idMarque ".
+            "AND v.idModele = mo.idModele ".
+            "AND v.idKilometrage = k.idKilometrage ".
             "AND idVehicule = :idVehicule";
     $requete = $bdd->prepare($sql);
-    $requete->binParam(":idVehicule", $idVehicule);
+    $requete->bindParam(":idVehicule", $idVehicule);
     $requete->execute();
     $reslt = $requete->fetch(PDO::FETCH_ASSOC);
     return $reslt;

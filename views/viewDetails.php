@@ -9,36 +9,60 @@ and open the template in the editor.
     <body>
         <div class="container">
             <?php include 'include/navBar.php'; ?>
-            <?php foreach ($detailsVehicule as $detail) : ?>
-            <div class="row">
-                <div class="col-md-3 col-xs-3"></div>
-                <div id="carousel-example-generic" class="col-md-6 col-xs-6">
-                    <h3><?php echo $detail['nomMarque']?> <?php echo $detail['nomModel'] ?></h3>
-                    <img class="img-thumbnail" src="img/<?php echo $detail['Image']; ?>">
+            <legend>Détails</legend>
+            <div class="thumbnail">
+                <div class="row">
+                    <div class="col-md-3 col-xs-3"></div>
+                    <div class="col-md-6 col-xs-6">
+                        <h3><?php echo $details['nomMarque'] ?> <?php echo $details['nomModele'] ?></h3>
+                        <img class="img-rounded" src="img/<?php echo $details['Image']; ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Détails du véhicule</div>
-                        <table>
-                            <tr>
-                                <td>Type </td>
-                                <td><?php echo $detail['Type']; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Année </td>
-                                <td><?php echo $detail['Annee']; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Categorie </td>
-                                <td><?php echo $detail['Categorie']; ?></td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de place </td>
-                                <td><?php echo $detail['Type']; ?></td>
-                            </tr>
-                        </table>
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Détails du véhicule</div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <td>Type </td>
+                                    <td><?php echo $details['Type']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Année </td>
+                                    <td><?php echo $details['Annee']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Categorie </td>
+                                    <td><?php echo $details['Categorie']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Nombre de place </td>
+                                    <td><?php echo $details['nbrPlace']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Volume utile </td>
+                                    <td><?php echo $details['volumeUtile']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Motorisation </td>
+                                    <td><?php echo $details['Motorisation']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Kilométrage </td>
+                                    <td><?php echo $details['nbrKilometrage']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Description </td>
+                                    <td><?php echo $details['Description']; ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <h4>Commentaire et note</h4>
+                        <textarea class="form-control"  rows="14" disabled style="resize:none">
+                        
+                        </textarea>
                     </div>
                 </div>
             </div>
