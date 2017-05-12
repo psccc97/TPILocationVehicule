@@ -67,7 +67,7 @@ function recupereVehicleSelonId($idVehicule)
     return $reslt;
 }
 
-function louerVehicule($type, $description, $annee, $categorie, $nbrpPlace, $volumeUtile, $motorisation, $image, $marque, $modele, $kilometrage, $utilisateur)
+function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $marque, $modele, $kilometrage, $utilisateur, $dateDebut, $dateFin)
 {
     $bdd = connexionBdd();
     
@@ -85,15 +85,7 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrpPlace, $vol
     $requete = $bdd->prepare($sql);
     $requete->bindParam(':modele', $modele);
     $requete->execute();
-    $lastidModele = $bdd->lastInsertId();
-    
-    //Ajout du kilometrage//
-    $sql = "INSERT INTO kilometrages(nbrKilometrage)".
-            "VALUES(:kilometrage)";
-    $requete = $bdd->prepare($sql);
-    $requete->bindParam(':kilometrage', $kilometrage);
-    $requete->execute();
-    $lastidKilomtrage = $bdd->lastInsertId();
+    $lastidModele = $bdd->lastInsertId();    
     
     //Ajout d'un véhicule//
     $sql = "INSERT INTO vehicules(Type, Description, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, idMarque, idModele, idKilometrage, idUtilisateur)".
@@ -105,19 +97,30 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrpPlace, $vol
     $source = $_FILES['img']['tmp_name'];
     
     $requete->bindParam(':type', $type);
-    $requete->bidnParam(':description', $description);
+    $requete->bindParam(':description', $description);
     $requete->bindParam(':annee', $annee);
     $requete->bindParam(':categorie', $categorie);
-    $requete->bindParam(':nbrPlace', $nbrpPlace);
+    $requete->bindParam(':nbrPlace', $nbrPlace);
     $requete->bindParam(':volumeUtile', $volumeUtile);
     $requete->bindParam(':motorisation', $motorisation);
     $requete->bindParam(':image', $nomImage);
     $requete->bindParam(':lastidMarque', $lastidMarque);
     $requete->bindParam(':lastidModele', $lastidModele);
-    $requete->bindParam(':lastidKilomtrage', $lastidKilomtrage);
+    $requete->bindParam(':lastidKilomtrage', $kilometrage);
     $requete->bindParam(':utilisateur', $utilisateur);
     $requete->execute();
     $resultEnvoieFichierImage = move_uploaded_file($source, $destination);
+    $lastidVehicule = $bdd->lastInsertId();
+    
+    
+    //Ajout d'une plage de diponibilié//
+    $sql = "INSERT INTO disponibilites(dateDebut, dateFin, idVehicule)".
+            "VALUES(:dateDebut, :dateFin, :vehicule)";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':dateDebut', $dateDebut);
+    $requete->bindParam(':dateFin', $dateFin);
+    $requete->bindParam(':vehicule', $lastidVehicule);
+    
 }
 
 function recupereKilometrages()

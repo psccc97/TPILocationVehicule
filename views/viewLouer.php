@@ -55,9 +55,9 @@ and open the template in the editor.
                             <label class="control-label" for="categorie">Catégorie</label>
                             <div class="controls">
                                 <select id="categorie" name="categorie" class="input-large" required>
-                                    <option>Familiale</option>
-                                    <option>Citadine</option>
-                                    <option>Sportive</option>
+                                    <option value="Familiale">Familiale</option>
+                                    <option value="Citadine">Citadine</option>
+                                    <option value="Sportive">Sportive</option>
                                 </select>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="dateDebut">Date de début</label>
                             <div class="controls">
-                                <input id="dateDebut" name="DateDebut" type="date" placeholder="" class="input-large">
+                                <input id="dateDebut" name="dateDebut" type="date" placeholder="" class="input-large">
 
                             </div>
                         </div>
@@ -113,11 +113,11 @@ and open the template in the editor.
                             <label class="control-label" for="motorisation">Motorisation</label>
                             <div class="controls">
                                 <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option>Essence</option>
-                                    <option>Diesel</option>
-                                    <option>Gaz</option>
-                                    <option>Hybride</option>
-                                    <option>Electrique</option>
+                                    <option value="Essence">Essence</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Gaz">Gaz</option>
+                                    <option value="Hybride">Hybride</option>
+                                    <option value="Electrique">Electrique</option>
                                 </select>
                             </div>
                         </div>
@@ -139,9 +139,9 @@ and open the template in the editor.
                             <label class="control-label" for="type">Type</label>
                             <div class="controls">
                                 <select id="type" name="type" class="input-large">
-                                    <option>Utilitaire</option>
-                                    <option>Voiture</option>
-                                    <option>2 roues</option>
+                                    <option value="Utilitaire">Utilitaire</option>
+                                    <option value="Voiture">Voiture</option>
+                                    <option value="2 roues">2 roues</option>
                                 </select>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>
                             <div class="controls">
-                                <input id="image" name="image" class="input-file" type="file" required>
+                                <input id="image" name="image" accept="image/*" class="input-file" type="file" required>
                             </div>
                         </div>
 
