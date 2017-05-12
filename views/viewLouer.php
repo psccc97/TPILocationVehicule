@@ -23,7 +23,7 @@ and open the template in the editor.
                     <legend>Mettre en location un véhicule</legend>
 
                     <div class="col-md-6 col-xs-6">
-                        <!-- Text input-->
+                        <!-- Text input Marque-->
                         <div class="control-group">
                             <label class="control-label" for="marque">Marque</label>
                             <div class="controls">
@@ -32,7 +32,7 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Text input-->
+                        <!-- Text input Modèle-->
                         <div class="control-group">
                             <label class="control-label" for="modele">Modèle</label>
                             <div class="controls">
@@ -41,25 +41,28 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Number input-->
+                        <!-- Number input Année-->
                         <div class="control-group">
-                            <label class="control-label" for="annee">Modèle</label>
+                            <label class="control-label" for="annee">Année</label>
                             <div class="controls">
                                 <input id="annee" name="annee" type="number" placeholder="" class="input-large">
 
                             </div>
                         </div>
 
-                        <!-- Select Basic -->
+                        <!-- Select Basic Catégorie -->
                         <div class="control-group">
                             <label class="control-label" for="categorie">Catégorie</label>
                             <div class="controls">
-                                <select id="categorie" name="categorie" class="input-large">
+                                <select id="categorie" name="categorie" class="input-large" required>
+                                    <option>Familiale</option>
+                                    <option>Citadine</option>
+                                    <option>Sportive</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Number input-->
+                        <!-- Number input Nombre de place-->
                         <div class="control-group">
                             <label class="control-label" for="nbrPlace">Nombre de place</label>
                             <div class="controls">
@@ -68,7 +71,7 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Number input-->
+                        <!-- Number input Volume utile-->
                         <div class="control-group">
                             <label class="control-label" for="volume">Volume utile</label>
                             <div class="controls">
@@ -77,7 +80,7 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Date input-->
+                        <!-- Date input Date début-->
                         <div class="control-group">
                             <label class="control-label" for="dateDebut">Date de début</label>
                             <div class="controls">
@@ -86,7 +89,7 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Date input-->
+                        <!-- Date input Date fin-->
                         <div class="control-group">
                             <label class="control-label" for="dateFin">Date de Fin</label>
                             <div class="controls">
@@ -97,7 +100,7 @@ and open the template in the editor.
                     </div>
                     <div class="col-md-6 col-xs-6">
 
-                        <!-- Textarea -->
+                        <!-- Textarea Description-->
                         <div class="control-group">
                             <label class="control-label" for="description">Description</label>
                             <div class="controls">                     
@@ -105,35 +108,55 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Select Basic -->
+                        <!-- Select Basic Motorisation-->
                         <div class="control-group">
                             <label class="control-label" for="motorisation">Motorisation</label>
                             <div class="controls">
-                                <select id="motorisation" name="motorisation" class="input-large">
+                                <select id="motorisation" name="motorisation" class="input-large" required>
+                                    <option>Essence</option>
+                                    <option>Diesel</option>
+                                    <option>Gaz</option>
+                                    <option>Hybride</option>
+                                    <option>Electrique</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Select Basic -->
+                        <!-- Select Basic Kilométrage-->
                         <div class="control-group">
                             <label class="control-label" for="kilometrage">Kilométrage</label>
                             <div class="controls">
-                                <select id="kilometrage" name="kilometrage" class="input-large">
+                                <select id="kilometrage" name="kilometrage" class="input-large" required>
+                                    <?php foreach ($kilometrages as $k) :?>
+                                    <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Select Basic Type-->
+                        <div class="control-group">
+                            <label class="control-label" for="type">Type</label>
+                            <div class="controls">
+                                <select id="type" name="type" class="input-large">
+                                    <option>Utilitaire</option>
+                                    <option>Voiture</option>
+                                    <option>2 roues</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- File Button --> 
+                        <!-- File Button Image--> 
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>
                             <div class="controls">
-                                <input id="image" name="image" class="input-file" type="file">
+                                <input id="image" name="image" class="input-file" type="file" required>
                             </div>
                         </div>
 
                     </div>
 
-                    <!-- Button -->
+                    <!-- Button Enregistrer-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="enregistrer"></label>
                         <div class="col-md-4">
