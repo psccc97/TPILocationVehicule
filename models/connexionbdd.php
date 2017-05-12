@@ -6,8 +6,9 @@
  * @staticvar type $bd
  * @return \PDO
  */
+define('HOST', "localhost");
 function connexionBdd() {
-    define('HOST', "localhost");
+    
     $dbname = "bdd_location_vehicule";
     $user = "userTPI";
     $password = "Super";

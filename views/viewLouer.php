@@ -16,7 +16,7 @@ and open the template in the editor.
         <div class="container">
             <?php include 'include/navBar.php'; ?>
 
-            <form class="form-horizontal" action="louer.html" method="post">
+            <form class="form-horizontal" action="louer.html" method="post" enctype="multipart/form-data">
                 <fieldset>
 
                     <!-- Form Name -->
@@ -45,10 +45,19 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="annee">Année</label>
                             <div class="controls">
-                                <input id="annee" name="annee" type="number" placeholder="" class="input-large">
+                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900">
 
                             </div>
                         </div>
+                        <?php if (isset($msgError)): ?>
+                            <div class="form-group">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
+                                </div>
+
+                            </div>
+                        <?php endif; ?>
 
                         <!-- Select Basic Catégorie -->
                         <div class="control-group">
@@ -66,10 +75,19 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="nbrPlace">Nombre de place</label>
                             <div class="controls">
-                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large">
+                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0">
 
                             </div>
                         </div>
+                        <?php if (isset($msgError)): ?>
+                            <div class="form-group">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
+                                </div>
+
+                            </div>
+                        <?php endif; ?>
 
                         <!-- Number input Volume utile-->
                         <div class="control-group">
@@ -98,6 +116,15 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    <?php if (isset($msgError)): ?>
+                        <div class="form-group">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <p class="alert alert-danger" role="alert"><?php echo $msgError; ?></p>
+                            </div>
+
+                        </div>
+                    <?php endif; ?>
                     <div class="col-md-6 col-xs-6">
 
                         <!-- Textarea Description-->
@@ -127,13 +154,13 @@ and open the template in the editor.
                             <label class="control-label" for="kilometrage">Kilométrage</label>
                             <div class="controls">
                                 <select id="kilometrage" name="kilometrage" class="input-large" required>
-                                    <?php foreach ($kilometrages as $k) :?>
-                                    <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
+                                    <?php foreach ($kilometrages as $k) : ?>
+                                        <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
-                        
+
                         <!-- Select Basic Type-->
                         <div class="control-group">
                             <label class="control-label" for="type">Type</label>

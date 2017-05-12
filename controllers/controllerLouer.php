@@ -23,21 +23,33 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
     $dateFin = filter_input(INPUT_POST, "dateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
 
     
-    
-    if ($dateDebut > $dateFin) {
-        echo 'la date est FAUSSE';
+    $msgError = "";
+    if ($dateDebut > $dateFin || $dateDebut< date("Y-m-d")) {
+        
+        $msgError = "La date est fausse";
+        header('location:louer.html');
+    }
+    if($annee> date("Y")){
+       $msgError = "L'Année ne coréspond pas";
+       header('location:louer.html');
+    }
+    if($nbrPlace > 9){
+        $msgError = "Le nombre de place est trop grand";
+        header('location:louer.html');
     }
 
     louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $marque, $modele, $kilometrage, $utilisateur, $dateDebut, $dateFin);
+    
+    header('location:accueil.html');
 } else {
     if (isset($_SESSION['prenom'])) {
 
-        $kilometrages = recupereKilometrages();
-        include 'views/viewLouer.php';
+        $kilometrages = recupereKilometrages();        
     } else {
         header('location:accueil.html');
     }
 }
+include 'views/viewLouer.php';
 
 
 
