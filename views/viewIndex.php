@@ -53,7 +53,13 @@ session_start();
                         <div class="col-xs-4 col-sm-3 col-md-2">
                             <select class="form-control"></select>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-3 col-md-2">
+                            Votre longitude : <input id="longitude" type="number" name="longitude" class="input-small" min="0"><br/>
+                            Votre latitude : <input id="latitude" type="number" name="latitude" class="input-small" min="0">
+                        </div>
+                    </div>
                     <input type="submit" name="recherche" value="Rechercher" class="btn btn-primary">                   
                 </section>                
             </form>

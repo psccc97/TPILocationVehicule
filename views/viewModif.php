@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <?php include 'include/header.php'; ?>
+    <?php
+    require_once 'views/htmlTools.php';
+    include 'include/header.php'; 
+    ?>    
     <head>
         <meta charset="UTF-8">
         <title></title>
@@ -8,9 +11,9 @@
     <body>
         <div class="container">
             <?php include 'include/navBar.php'; ?>
-            <form class="form-horizontal" action="louer.html" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="modificaton.html" method="post" enctype="multipart/form-data">
                 <fieldset>
-
+                    <?php foreach ($vehicule as $v)?>
                     <!-- Form Name -->
                     <legend>Modifier un véhicule</legend>
 
@@ -19,7 +22,7 @@
                         <div class="control-group">
                             <label class="control-label" for="marque">Marque</label>
                             <div class="controls">
-                                <input id="marque" name="marque" type="text" placeholder="" class="input-large" required="">
+                                <input id="marque" name="marque" type="text" placeholder="" class="input-large" required="" value="<?php echo $v['nomMarque'] ?>">
 
                             </div>
                         </div>
@@ -28,7 +31,7 @@
                         <div class="control-group">
                             <label class="control-label" for="modele">Modèle</label>
                             <div class="controls">
-                                <input id="modele" name="modele" type="text" placeholder="" class="input-large" required="">
+                                <input id="modele" name="modele" type="text" placeholder="" class="input-large" required="" value="<?php echo $v['nomModole']?>">
 
                             </div>
                         </div>
@@ -37,7 +40,7 @@
                         <div class="control-group">
                             <label class="control-label" for="annee">Année</label>
                             <div class="controls">
-                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900" max="<?php echo date("Y"); ?>">
+                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900" max="<?php echo date("Y"); ?>" value="<?php echo $v['Annee'];?>">
 
                             </div>
                         </div>                        
@@ -47,9 +50,21 @@
                             <label class="control-label" for="categorie">Catégorie</label>
                             <div class="controls">
                                 <select id="categorie" name="categorie" class="input-large" required>
-                                    <option value="Familiale">Familiale</option>
-                                    <option value="Citadine">Citadine</option>
-                                    <option value="Sportive">Sportive</option>
+                                    <?php if($v['Categorie'] == 'Citadine'):?>
+                                        <option value="Familiale">Familiale</option>
+                                        <option value="Citadine"><?php echo $v['Categorie']; ?></option>
+                                        <option value="Sportive">Sportive</option>
+                                    <?php endif; ?>
+                                    <?php if($v['Categorie'] == "Familiale") :?>
+                                        <option value="Familiale"><?php echo $v['Categorie']; ?></option>
+                                        <option value="Citadine">Citadine</option>
+                                        <option value="Sportive">Sportive</option>
+                                    <?php endif;?>
+                                    <?php if($v['Categorie'] == "Sportive") :?>
+                                        <option value="Familiale">Familiale</option>
+                                        <option value="Citadine">Citadine</option>
+                                        <option value="Sportive"><?php echo $v['Categorie'] ?></option>
+                                        <?php endif; ?>
                                 </select>
                             </div>
                         </div>
@@ -58,7 +73,7 @@
                         <div class="control-group">
                             <label class="control-label" for="nbrPlace">Nombre de place</label>
                             <div class="controls">
-                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0">
+                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0" value="<?php echo $v['nbrPlace']?>">
 
                             </div>
                         </div>                        
@@ -67,7 +82,7 @@
                         <div class="control-group">
                             <label class="control-label" for="volume">Volume utile</label>
                             <div class="controls">
-                                <input id="volume" name="volume" type="number" placeholder="" class="input-large"> m3
+                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" value="<?php echo $v['volumeUtile'] ?>"> m3
 
                             </div>
                         </div>
@@ -76,7 +91,7 @@
                         <div class="control-group">
                             <label class="control-label" for="dateDebut">Date de début</label>
                             <div class="controls">
-                                <input id="dateDebut" name="dateDebut" type="date" class="input-large" required min="<?php echo date("Y-m-d"); ?>">
+                                <input id="dateDebut" value="<?php echo $v['dateDebut'] ?>" name="dateDebut" type="date" class="input-large" required min="<?php echo date("Y-m-d"); ?>">
 
                             </div>
                         </div>
@@ -85,7 +100,7 @@
                         <div class="control-group">
                             <label class="control-label" for="dateFin">Date de Fin</label>
                             <div class="controls">
-                                <input id="dateFin" name="dateFin" type="date" placeholder="" class="input-large" required>
+                                <input id="dateFin" name="dateFin" type="date" value="<?php echo $v['dateFin']?>" placeholder="" class="input-large" required>
 
                                 <?php if (isset($msgError)): ?>
                                     <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
@@ -100,7 +115,7 @@
                         <div class="control-group">
                             <label class="control-label" for="description">Description</label>
                             <div class="controls">                     
-                                <textarea id="description" name="description">default text</textarea>
+                                <textarea id="description" name="description"><?php echo $v['Description']?></textarea>
                             </div>
                         </div>
 
@@ -109,11 +124,41 @@
                             <label class="control-label" for="motorisation">Motorisation</label>
                             <div class="controls">
                                 <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="Gaz">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique">Electrique</option>
+                                    <?php if($v['Motorisation'] == 'Essence') :?>
+                                        <option value="Essence"><?php echo  $v['Motorisation']?></option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gaz">Gaz</option>
+                                        <option value="Hybride">Hybride</option>
+                                        <option value="Electrique">Electrique</option>
+                                    <?php endif;?>
+                                    <?php if($v['Motorisation'] == 'Diesel') :?>
+                                        <option value="Essence">Essence</option>
+                                        <option value="Diesel"><?php echo $v['Motorisation']?></option>
+                                        <option value="Gaz">Gaz</option>
+                                        <option value="Hybride">Hybride</option>
+                                        <option value="Electrique">Electrique</option>
+                                    <?php endif;?>
+                                    <?php if($v['Motorisation'] == 'Gaz') :?>
+                                        <option value="Essence">Essence</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gaz"><?php echo $v['Motorisation']?></option>
+                                        <option value="Hybride">Hybride</option>
+                                        <option value="Electrique">Electrique</option>
+                                    <?php endif;?>
+                                    <?php if($v['Motorisation'] == 'Hybride') :?>
+                                        <option value="Essence">Essence</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gaz">Gaz</option>
+                                        <option value="Hybride"><?php echo $v['Motorisation']?></option>
+                                        <option value="Electrique">Electrique</option>
+                                    <?php endif;?>
+                                    <?php if($v['Motorisation'] == 'Electrique') :?>
+                                        <option value="Essence">Essence</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gaz">Gaz</option>
+                                        <option value="Hybride">Hybride</option>
+                                        <option value="Electrique"><?php echo $v['Motorisation']?></option>
+                                    <?php endif;?>
                                 </select>
                             </div>
                         </div>
@@ -122,11 +167,9 @@
                         <div class="control-group">
                             <label class="control-label" for="kilometrage">Kilométrage</label>
                             <div class="controls">
-                                <select id="kilometrage" name="kilometrage" class="input-large" required>
-                                    <?php foreach ($kilometrages as $k) : ?>
-                                        <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <?php foreach ($kilometrages as $k) :?>
+                                <?php select('kilometrage', $k['idVehicule'], $v['idKilometrage']); ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
 
@@ -135,9 +178,21 @@
                             <label class="control-label" for="type">Type</label>
                             <div class="controls">
                                 <select id="type" name="type" class="input-large">
-                                    <option value="Utilitaire">Utilitaire</option>
-                                    <option value="Voiture">Voiture</option>
-                                    <option value="2 roues">2 roues</option>
+                                    <?php if($v['Type'] == 'Utilitaire'): ?>
+                                        <option value="Utilitaire"><?php echo $v['Type']?></option>
+                                        <option value="Voiture">Voiture</option>
+                                        <option value="2 roues">2 roues</option>
+                                    <?php endif;?>
+                                    <?php if($v['Type'] == 'Voiture'): ?>
+                                        <option value="Utilitaire">Utilitaire</option>
+                                        <option value="Voiture"><?php echo $v['Type']?></option>
+                                        <option value="2 roues">2 roues</option>
+                                    <?php endif;?>
+                                    <?php if($v['Type'] == '2 roues'): ?>
+                                        <option value="Utilitaire">Utilitaire</option>
+                                        <option value="Voiture">Voiture</option>
+                                        <option value="2 roues"><?php echo $v['Type']?></option>
+                                    <?php endif;?>
                                 </select>
                             </div>
                         </div>
@@ -146,17 +201,19 @@
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>
                             <div class="controls">
-                                <input id="image" name="image" accept="image/*" class="input-file" type="file" required>
+                                <input id="image" name="image" accept="image/*" class="input-file" type="file" required value="<?php $v['Image']?>">
                             </div>
                         </div>
 
                     </div>
 
-                    <!-- Button Enregistrer-->
+                    <!-- Button Enregistrer et Annuler-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="enregistrer"></label>
                         <div class="col-md-4">
-                            <button id="enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button>
+                            <input type="hidden" name="idVehicule" value="<?php echo $v['idVehicule'] ?>">
+                            <button id="modifier" name="modifier" class="btn btn-success">Modifier</button>
+                            <button id="annuler" name="annuler" class="btn btn-default">Annuler</button>
                         </div>
                     </div>
 

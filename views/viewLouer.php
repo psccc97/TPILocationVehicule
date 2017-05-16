@@ -5,7 +5,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <?php include 'include/header.php'; ?>
+    <?php
+    include 'include/header.php';
+    $i=0;
+    ?>
     <head>
         <meta charset="UTF-8">
         <title></title>
@@ -27,7 +30,19 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="marque">Marque</label>
                             <div class="controls">
-                                <input id="marque" name="marque" type="text" placeholder="" class="input-large" required="">
+                                <select name="marque" required="">
+                                    <option selected="" value=""></option>
+                                    <?php 
+                                        foreach ($marques as $ma) {
+                                        if ($ma['idMarque'] == $idMarque) {
+                                            echo '<option selected="true" value="' . $ma['idMarque'] . '">' . $ma['nomMarque'] . '</option>';
+                                        } else {
+                                            echo '<option value="' . $ma['idMarque'] . '">' . $ma['nomMarque'] . '</option>';
+                                        }
+                                    }
+                                    ?> 
+                                </select>
+
 
                             </div>
                         </div>
@@ -36,7 +51,17 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="modele">Modèle</label>
                             <div class="controls">
-                                <input id="modele" name="modele" type="text" placeholder="" class="input-large" required="">
+                                <select name="modele" required="">
+                                    <option selected="" value=""></option>
+                                    <?php foreach ($modeles as $m) :?>
+                                        <?php if ($m['idModele'] == $idModele): ?>
+                                        <option selected="true" value="<?php echo $m['idModele']?>"><?php echo $m['nomModele'] ?></option>
+                                        <?php else :?>
+                                            <option value="<?php echo $m['idModele']?>"><?php echo $m['nomModele']?></option>;
+                                        <?php endif ?>
+                                    
+                                    <?php endforeach;?> 
+                                </select>
 
                             </div>
                         </div>
@@ -45,7 +70,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="annee">Année</label>
                             <div class="controls">
-                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900" max="<?php echo date("Y"); ?>">
+                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900" max="<?php echo date("Y"); ?>" value="<?php if(isset($annee)){echo $annee;} ?>">
 
                             </div>
                         </div>                        
@@ -55,6 +80,9 @@ and open the template in the editor.
                             <label class="control-label" for="categorie">Catégorie</label>
                             <div class="controls">
                                 <select id="categorie" name="categorie" class="input-large" required>
+                                    <?php if(isset($categorie)) : ?>
+                                    <option selected="" value="<?php echo $categorie; ?>"><?php echo $categorie; ?></option>
+                                    <?php endif; ?>
                                     <option value="Familiale">Familiale</option>
                                     <option value="Citadine">Citadine</option>
                                     <option value="Sportive">Sportive</option>
@@ -66,7 +94,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="nbrPlace">Nombre de place</label>
                             <div class="controls">
-                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0">
+                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0" value="<?php if(isset($nbrPlace)){echo $nbrPlace;} ?>">
 
                             </div>
                         </div>                        
@@ -75,7 +103,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="volume">Volume utile</label>
                             <div class="controls">
-                                <input id="volume" name="volume" type="number" placeholder="" class="input-large"> m3
+                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" value="<?php if(isset($volumeUtile)){echo $volumeUtile;} ?>"> m3
 
                             </div>
                         </div>
@@ -96,7 +124,7 @@ and open the template in the editor.
                                 <input id="dateFin" name="dateFin" type="date" placeholder="" class="input-large" required>
 
                                 <?php if (isset($msgError)): ?>
-                                <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
+                                    <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -108,7 +136,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="description">Description</label>
                             <div class="controls">                     
-                                <textarea id="description" name="description">default text</textarea>
+                                <textarea id="description" name="description"><?php if(isset($description)){echo $description;} ?>default text</textarea>
                             </div>
                         </div>
 
@@ -117,6 +145,9 @@ and open the template in the editor.
                             <label class="control-label" for="motorisation">Motorisation</label>
                             <div class="controls">
                                 <select id="motorisation" name="motorisation" class="input-large" required>
+                                    <?php if(isset($motorisation)) : ?>
+                                    <option selected="" value="<?php echo $motorisation; ?>"><?php echo $motorisation; ?></option>
+                                    <?php endif; ?>
                                     <option value="Essence">Essence</option>
                                     <option value="Diesel">Diesel</option>
                                     <option value="Gaz">Gaz</option>
@@ -132,7 +163,11 @@ and open the template in the editor.
                             <div class="controls">
                                 <select id="kilometrage" name="kilometrage" class="input-large" required>
                                     <?php foreach ($kilometrages as $k) : ?>
+                                    <?php if($k['idKilometrage'] == $idKilometrage): ?>
+                                    <option selected="true" value="<?php echo $m['idKilometrage']?>"><?php echo $m['nbrKilometrage'] ?></option>
+                                    <?php else : ?>
                                         <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -143,13 +178,35 @@ and open the template in the editor.
                             <label class="control-label" for="type">Type</label>
                             <div class="controls">
                                 <select id="type" name="type" class="input-large">
+                                    <?php if(isset($type)) : ?>
+                                    <option selected="" value="<?php echo $type; ?>"><?php echo $type; ?></option>
+                                    <?php endif; ?>
                                     <option value="Utilitaire">Utilitaire</option>
                                     <option value="Voiture">Voiture</option>
                                     <option value="2 roues">2 roues</option>
                                 </select>
                             </div>
                         </div>
-
+                        
+                        <!-- Input Number Longitude--> 
+                        <div class="control-group">
+                            <label class="control-label" for="longitude">Longitude</label>
+                            <div class="controls">
+                                <input id="longitude" name="longitude" type="number" required="" min="0" step="any" value="<?php if(isset($longitude)){echo $longitude;} ?>">
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Input Number Latitude--> 
+                        <div class="control-group">
+                            <label class="control-label" for="latitude">Latitude</label>
+                            <div class="controls">
+                                <input id="latitude" name="latitude" type="number" required="" min="0" step="any" value="<?php if(isset($latitude)){echo $latitude;} ?>">
+                                
+                            </div>
+                            
+                        </div>
+                        
                         <!-- File Button Image--> 
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>
