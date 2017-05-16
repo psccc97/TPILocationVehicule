@@ -13,7 +13,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#">Mes véhicules en location</a>
+                                <a href="mesvehiculesenlocation.html">Mes véhicules en location</a>
                             </li>
                             <li>
                                 <a href="#">Mes véhicules reservés</a>
@@ -27,7 +27,7 @@
                 endif;
                 if ($_SESSION['status'] == 1) :
                     ?>
-                    <li><a href="#">Administrateur</a></li>
+                    <li><a href="admin.html">Administrateur</a></li>
                 <?php endif; ?>
             <?php endif; ?>
         </ul>

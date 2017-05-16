@@ -6,15 +6,17 @@
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/include/navBar.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/connexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewLouer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerMesVehiculesEnLocation.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/deconnexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerLouer.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/bddfunctions.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerConnexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/connexionbdd.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerIndex.php</file>
-            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewDetails.php</file>
-            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerDetails.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewIndex.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerDetails.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerSupprimer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewMesVehiculesEnLocation.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/index.php</file>
         </group>
     </open-files>

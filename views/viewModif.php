@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <?php include 'include/header.php'; ?>
     <head>
@@ -11,16 +6,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <!-- Navigation -->
-
         <div class="container">
             <?php include 'include/navBar.php'; ?>
-
             <form class="form-horizontal" action="louer.html" method="post" enctype="multipart/form-data">
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend>Mettre en location un véhicule</legend>
+                    <legend>Modifier un véhicule</legend>
 
                     <div class="col-md-6 col-xs-6">
                         <!-- Text input Marque-->
@@ -96,7 +88,7 @@ and open the template in the editor.
                                 <input id="dateFin" name="dateFin" type="date" placeholder="" class="input-large" required>
 
                                 <?php if (isset($msgError)): ?>
-                                <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
+                                    <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -170,8 +162,7 @@ and open the template in the editor.
 
                 </fieldset>
             </form>
-
         </div>
-        <?php include 'include/footer.php'; ?>
     </body>
+    <?php include 'include/footer.php'; ?>
 </html>

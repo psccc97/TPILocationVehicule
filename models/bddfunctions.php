@@ -29,14 +29,16 @@ function verifIdentificationUtilisateur($prenom, $mdp) {
 
 /**
  * Cette fonction récupèer toute les données du véhicule
+ * J'utilise cette fonction pour afficher les données dans la page d'accueil
  * @return type
  */
 function recupereVehicules() {
     $bdd = connexionBdd();
-    $sql = "SELECT idVehicule, Type, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, nbrKilometrage, nomMarque, nomModele, Image, Description" .
-            " FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k " .
-            "WHERE v.idMarque = m.idMarque" .
-            " AND v.idModele = mo.idModele " .
+    $sql = "SELECT *" .
+            "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
+            "WHERE v.idMarque = m.idMarque " .
+            "AND v.idVehicule = d.idVehicule ".
+            "AND v.idModele = mo.idModele " .
             "AND v.idKilometrage = k.idKilometrage";
     $requete = $bdd->prepare($sql);
     $requete->execute();
@@ -45,18 +47,20 @@ function recupereVehicules() {
 }
 
 /**
- * 
+ * Cette fonction récupère les données d'un véhicule selon son id
+ * de l'utilise par exemple pour afficher les détails d'un véhicule
  * @param type $idVehicule
  * @return type
  */
 function recupereVehicleSelonId($idVehicule) {
     $bdd = connexionBdd();
-    $sql = "SELECT idVehicule, Type, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, nbrKilometrage, nomMarque, nomModele, Image, Description " .
-            "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k " .
+    $sql = "SELECT * " .
+            "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
             "WHERE v.idMarque = m.idMarque " .
+            "AND v.idVehicule = d.idVehicule ".
             "AND v.idModele = mo.idModele " .
             "AND v.idKilometrage = k.idKilometrage " .
-            "AND idVehicule = :idVehicule";
+            "AND v.idVehicule = :idVehicule";
     $requete = $bdd->prepare($sql);
     $requete->bindParam(":idVehicule", $idVehicule);
     $requete->execute();
@@ -95,8 +99,10 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
             $dot += 1;
         }
     }
+    //Ajout de la marque avec condition//
+    // Cette condition nous permet de savoir si une marque existe déjà
     if ($dot == 0) {
-        //Ajout de la marque//
+        
         $sql = "INSERT INTO marques(nomMarque)" .
                 "VALUES(:marque)";
         $requete = $bdd->prepare($sql);
@@ -133,8 +139,10 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete->bindParam(':volumeUtile', $volumeUtile);
     $requete->bindParam(':motorisation', $motorisation);
     $requete->bindParam(':image', $nomImageFinal);
+    //Si une marque que l'utilisateur à ajouter éxiste déjà on prend l'Id de la marque en question et on ajoute au véhicule
     if (isset($idMarque)) {
         $requete->bindParam(':lastidMarque', $idMarque);
+        //Sinon une ajoute une nouvel marque qui n'éxiste pas encore dans le tableau des marques et on ajoute l'id (lastId) en de nouvel marque au véhicule 
     } else {
         $requete->bindParam(':lastidMarque', $lastidMarque);
     }
@@ -159,6 +167,10 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete->execute();
 }
 
+/**
+ * 
+ * @return type
+ */
 function recupereKilometrages() {
     $bdd = connexionBdd();
     $sql = "SELECT * FROM kilometrages";
@@ -168,6 +180,10 @@ function recupereKilometrages() {
     return $reslt;
 }
 
+/**
+ * 
+ * @return type
+ */
 function recupereMarques() {
     $bdd = connexionBdd();
     $sql = "SELECT * FROM marques";
@@ -177,6 +193,12 @@ function recupereMarques() {
     return $reslt;
 }
 
+/**
+ * J'utilise cette fonction pour pouvoir récuperer l'id d'une marque
+ * Je l'utiise dans la fonction 'louerVehicule'
+ * @param type $nomMarque
+ * @return type
+ */
 function recupereIdMarque($nomMarque) {
     $bdd = connexionBdd();
     $sql = "SELECT idMarque FROM marques WHERE nomMarque = :nomMarque";
@@ -189,5 +211,51 @@ function recupereIdMarque($nomMarque) {
 
 function reserverVehicule()
 {
+    $bdd = connexionBdd();
+}
+
+/**
+ * Cette fonction récupere les données d'un véhicule selon un l'id d'un utilisateur
+ * Je l'utilise pour afficher les véhicules qu'a mis un utilisateur en location
+ * @param type $idUtilisateur
+ * @return type
+ */
+function recupereVehiculesSelonIdUtilisateur($idUtilisateur)
+{
+    $bdd = connexionBdd();
+    $sql = 'SELECT * FROM `vehicules` AS v, modeles AS mo, marques AS m, kilometrages AS k WHERE v.idMarque = m.idMarque AND v.idModele = mo.idModele AND v.idKilometrage = k.idKilometrage AND idUtilisateur = :idUtilisateur';
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':idUtilisateur', $idUtilisateur);
+    $requete->execute();
+    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+    return $reslt;
+}
+
+/**
+ * 
+ * @param type $idVehicule
+ * @return type
+ */
+function supprimerVehicule($idVehicule)
+{
+    //Suppression de la disponibiliter en fonction de l'id du véhicule//
+    $bdd=  connexionBdd();
+    $sql = "DELETE FROM disponibilites WHERE idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam('idVehicule', $idVehicule);
+    $requete->execute();
     
+    //Suppression du véhicule en fonction de son id//
+    $sql = "DELETE FROM vehicules WHERE idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam('idVehicule', $idVehicule);
+    $reslt = $requete->execute();
+    return $reslt;
+}
+
+function modifVehicule($idVehicule)
+{
+    $bdd = connexionBdd();
+    $sql = "UPDATE vehicules ".
+           "SET ";
 }

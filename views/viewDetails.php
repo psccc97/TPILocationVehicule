@@ -15,7 +15,7 @@ and open the template in the editor.
                     <div class="col-md-3 col-xs-3"></div>
                     <div class="col-md-6 col-xs-6">
                         <h3><?php echo $details['nomMarque'] ?> <?php echo $details['nomModele'] ?></h3>
-                        <img class="img-rounded" src="img/<?php echo $details['Image']; ?>">
+                        <img class="img-responsive" src="img/<?php echo $details['Image']; ?>">
                     </div>
                 </div>
                 <div class="row">
@@ -54,6 +54,10 @@ and open the template in the editor.
                                 <tr>
                                     <td>Description </td>
                                     <td><?php echo $details['Description']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Disponibilité </td>
+                                    <td><?php echo $details['dateDebut']?> ----> <?php echo $details['dateFin'] ?></td>
                                 </tr>
                             </table>
                         </div>

@@ -29,5 +29,16 @@ if (empty($action)) {
         case 'louer':
             require_once 'controllers/controllerLouer.php';
             break;
+        case 'mesvehiculesenlocation':
+            require_once 'controllers/controllerMesVehiculesEnLocation.php';
+            break;
+        case 'supprimer':
+            require_once 'controllers/controllerSupprimer.php';
+            break;
+        case 'admin':
+            require_once 'controllers/controllerAdmin.php';
+            break;
+        case 'modificaton':
+            require_once 'controllers/controllerModif.php';
         
     }

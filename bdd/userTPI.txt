@@ -1,0 +1,3 @@
+GRANT USAGE ON *.* TO 'userTPI'@'localhost';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON `bdd\_location\_vehicule`.* TO 'userTPI'@'localhost';

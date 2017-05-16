@@ -61,11 +61,12 @@ session_start();
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>
-                        <img src="img/<?php echo $vehicule['Image'] ?>" class="img-responsive">
+                        <img src="img/<?php echo $vehicule['Image'] ?>" class="img-responsive" style="width: 100%; height: auto; display: block;"s>
                         <div class="caption">       
                             <p>Kilométrages : <?php echo $vehicule['nbrKilometrage'] ?></p>
                             <p>Année : <?php echo $vehicule['Annee'] ?></p>
-                            <p> Description :<?php echo $vehicule['Description'] ?></p>
+                            <p>Description :<?php echo $vehicule['Description'] ?></p>
+                            <p>Disponibilité :<?php echo $vehicule['dateDebut']?> ----> <?php echo $vehicule['dateFin']?></p>
                             <p>
                                 <a href="details-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-primary" role="button">Détails</a> 
                                 <a href="#" class="btn btn-default" role="button">Réserver</a>
