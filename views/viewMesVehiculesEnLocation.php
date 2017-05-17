@@ -53,6 +53,10 @@ and open the template in the editor.
                                         <td>Description </td>
                                         <td><?php echo $vehicule['Description']; ?></td>
                                     </tr>
+                                    <tr>
+                                        <td>Disponibilité </td>
+                                        <td><?php echo $vehicule['dateDebut'] ?> ----> <?php echo $vehicule['dateFin'] ?></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

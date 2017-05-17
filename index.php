@@ -24,7 +24,7 @@ if (empty($action)) {
             require_once 'controllers/controllerDetails.php';
             break;
         case 'deconnexion':
-            require_once 'controllers/deconnexion.php';
+            require_once 'controllers/controllerDeconnexion.php';
             break;
         case 'louer':
             require_once 'controllers/controllerLouer.php';

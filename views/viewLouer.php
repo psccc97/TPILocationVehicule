@@ -30,8 +30,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="marque">Marque</label>
                             <div class="controls">
-                                <select name="marque" required="">
-                                    <option selected="" value=""></option>
+                                <select name="marque" required="">                                    
                                     <?php 
                                         foreach ($marques as $ma) {
                                         if ($ma['idMarque'] == $idMarque) {
@@ -51,8 +50,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="modele">Modèle</label>
                             <div class="controls">
-                                <select name="modele" required="">
-                                    <option selected="" value=""></option>
+                                <select name="modele" required="">                                    
                                     <?php foreach ($modeles as $m) :?>
                                         <?php if ($m['idModele'] == $idModele): ?>
                                         <option selected="true" value="<?php echo $m['idModele']?>"><?php echo $m['nomModele'] ?></option>
@@ -79,14 +77,33 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="categorie">Catégorie</label>
                             <div class="controls">
+                                
+                                    <?php if(isset($categorie) && $categorie == "Familiale") : ?> 
                                 <select id="categorie" name="categorie" class="input-large" required>
-                                    <?php if(isset($categorie)) : ?>
-                                    <option selected="" value="<?php echo $categorie; ?>"><?php echo $categorie; ?></option>
-                                    <?php endif; ?>
+                                    <option value="Familiale" selected="true">Familiale</option>
+                                    <option value="Citadine">Citadine</option>
+                                    <option value="Sportive">Sportive</option>
+                                </select>
+                                    
+                                    <?php elseif(isset($categorie) && $categorie == "Citadine") : ?>  
+                                <select id="categorie" name="categorie" class="input-large" required>
+                                    <option value="Familiale">Familiale</option>
+                                    <option value="Citadine" selected="true">Citadine</option>
+                                    <option value="Sportive">Sportive</option>
+                                </select>
+                                    <?php elseif(isset($categorie) && $categorie == "Sportive") : ?>
+                                <select id="categorie" name="categorie" class="input-large" required>
+                                    <option value="Familiale">Familiale</option>
+                                    <option value="Citadine">Citadine</option>
+                                    <option value="Sportive" selected="true">Sportive</option>
+                                </select>
+                                    <?php else : ?>
+                                <select id="categorie" name="categorie" class="input-large" required>
                                     <option value="Familiale">Familiale</option>
                                     <option value="Citadine">Citadine</option>
                                     <option value="Sportive">Sportive</option>
                                 </select>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -136,7 +153,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="description">Description</label>
                             <div class="controls">                     
-                                <textarea id="description" name="description"><?php if(isset($description)){echo $description;} ?>default text</textarea>
+                                <textarea id="description" name="description"><?php if(isset($description)){echo $description;} ?></textarea>
                             </div>
                         </div>
 
@@ -144,16 +161,60 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="motorisation">Motorisation</label>
                             <div class="controls">
+                                                                    
+                                <?php if (isset($motorisation) && $motorisation == "Essence") :?>
+                                    <select id="motorisation" name="motorisation" class="input-large" required>
+                                        <option value="Essence" selected="true">Essence</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Gaz">Gaz</option>
+                                        <option value="Hybride">Hybride</option>
+                                        <option value="Electrique">Electrique</option>
+                                    </select>
+                                    <?php elseif(isset($motorisation) && $motorisation == "Diesel") :?>
                                 <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <?php if(isset($motorisation)) : ?>
-                                    <option selected="" value="<?php echo $motorisation; ?>"><?php echo $motorisation; ?></option>
-                                    <?php endif; ?>
+                                    <option value="Essence">Essence</option>
+                                    <option value="Diesel" selected="true">Diesel</option>
+                                    <option value="Gaz">Gaz</option>
+                                    <option value="Hybride">Hybride</option>
+                                    <option value="Electrique">Electrique</option>
+                                </select>
+                                    <?php 
+                                    elseif(isset($motorisation)&& $motorisation == "Gaz") :?>
+                                <select id="motorisation" name="motorisation" class="input-large" required>
+                                    <option value="Essence">Essence</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Gaz" selected="true">Gaz</option>
+                                    <option value="Hybride">Hybride</option>
+                                    <option value="Electrique">Electrique</option>
+                                </select>
+                                    <?php  
+                                    elseif(isset($motorisation)&& $motorisation == "Hybride") :?>
+                                <select id="motorisation" name="motorisation" class="input-large" required>
+                                    <option value="Essence">Essence</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Gaz" selected="true">Gaz</option>
+                                    <option value="Hybride">Hybride</option>
+                                    <option value="Electrique">Electrique</option>
+                                </select>
+                                    <?php 
+                                    elseif(isset($motorisation)&& $motorisation == "Electrique") :?>
+                                <select id="motorisation" name="motorisation" class="input-large" required>
+                                    <option value="Essence">Essence</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Gaz">Gaz</option>
+                                    <option value="Hybride">Hybride</option>
+                                    <option value="Electrique" selected="true">Electrique</option>
+                                </select>
+                                    <?php else : ?>
+                                <select id="motorisation" name="motorisation" class="input-large" required>
                                     <option value="Essence">Essence</option>
                                     <option value="Diesel">Diesel</option>
                                     <option value="Gaz">Gaz</option>
                                     <option value="Hybride">Hybride</option>
                                     <option value="Electrique">Electrique</option>
                                 </select>
+                                    <?php endif; ?>
+                                
                             </div>
                         </div>
 
@@ -164,7 +225,7 @@ and open the template in the editor.
                                 <select id="kilometrage" name="kilometrage" class="input-large" required>
                                     <?php foreach ($kilometrages as $k) : ?>
                                     <?php if($k['idKilometrage'] == $idKilometrage): ?>
-                                    <option selected="true" value="<?php echo $m['idKilometrage']?>"><?php echo $m['nbrKilometrage'] ?></option>
+                                    <option selected="true" value="<?php echo $k['idKilometrage']?>"><?php echo $k['nbrKilometrage'] ?></option>
                                     <?php else : ?>
                                         <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
                                         <?php endif; ?>
@@ -177,14 +238,32 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="type">Type</label>
                             <div class="controls">
+                                
+                                    <?php if(isset($type) && $type == "Utilitaire") :?>
                                 <select id="type" name="type" class="input-large">
-                                    <?php if(isset($type)) : ?>
-                                    <option selected="" value="<?php echo $type; ?>"><?php echo $type; ?></option>
-                                    <?php endif; ?>
+                                    <option value="Utilitaire" selected="true">Utilitaire</option>
+                                    <option value="Voiture">Voiture</option>
+                                    <option value="2 roues">2 roues</option>
+                                </select>                                    
+                                    <?php elseif(isset($type) && $type == "Voiture") :?>                                                                        
+                                <select id="type" name="type" class="input-large">
+                                    <option value="Utilitaire">Utilitaire</option>
+                                    <option value="Voiture" selected="true">Voiture</option>
+                                    <option value="2 roues">2 roues</option>
+                                </select>                                    
+                                    <?php elseif(isset($type) && $type == "2 roues") :?>
+                                <select id="type" name="type" class="input-large">
+                                    <option value="Utilitaire">Utilitaire</option>
+                                    <option value="Voiture">Voiture</option>
+                                    <option value="2 roues" selected="true">2 roues</option>
+                                </select>
+                                    <?php else: ?>
+                                <select id="type" name="type" class="input-large">
                                     <option value="Utilitaire">Utilitaire</option>
                                     <option value="Voiture">Voiture</option>
                                     <option value="2 roues">2 roues</option>
                                 </select>
+                                <?php endif; ?>
                             </div>
                         </div>
                         
@@ -212,6 +291,9 @@ and open the template in the editor.
                             <label class="control-label" for="image">Image</label>
                             <div class="controls">
                                 <input id="image" name="image" accept="image/*" class="input-file" type="file" required>
+                                <?php if(isset($msgErrorFile)): ?>
+                                <p class="bg-danger text-danger"><?= $msgErrorFile ?></p>
+                                <?php endif; ?>
                             </div>
                         </div>
 

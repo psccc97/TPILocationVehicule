@@ -7,9 +7,10 @@
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/connexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewLouer.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerMesVehiculesEnLocation.php</file>
-            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/deconnexion.php</file>
-            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerLouer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerDeconnexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/bddfunctions.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewModif.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerModif.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerConnexion.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/connexionbdd.php</file>
             <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controllers/controllerIndex.php</file>

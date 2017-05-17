@@ -18,50 +18,64 @@ session_start();
             <legend>Accueil</legend>
             <form class="form-inline" action="#" method="post">
 
-                <section class="row">
+                <div class="row">
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
+                        <div class="col-xs-1 col-sm-1">
                             <select class="form-control"></select>
                         </div>
                     </div>
+                    
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-3 col-md-2">
-                            Votre longitude : <input id="longitude" type="number" name="longitude" class="input-small" min="0"><br/>
-                            Votre latitude : <input id="latitude" type="number" name="latitude" class="input-small" min="0">
+                        <div class="col-xs-1 col-sm-1">
+                            <select class="form-control"></select>
                         </div>
                     </div>
-                    <input type="submit" name="recherche" value="Rechercher" class="btn btn-primary">                   
-                </section>                
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label" for="longitude">Votre longitude :</label>
+                        <div class="controls">
+                             <input id="longitude" type="number" name="longitude" class="input-small" min="0">                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="latitude">Votre latitude :</label>
+                        <div class="controls">
+                            <input id="latitude" type="number" name="latitude" class="input-small" min="0">                            
+                        </div>
+                    </div>
+                </div>
+                    <input type="submit" name="recherche" value="Rechercher" class="btn btn-primary">                                                   
             </form>
             <?php foreach ($vehicules as $vehicule): ?>
                 <div class="col-sm-6 col-md-4">
@@ -73,6 +87,8 @@ session_start();
                             <p>Année : <?php echo $vehicule['Annee'] ?></p>
                             <p>Description :<?php echo $vehicule['Description'] ?></p>
                             <p>Disponibilité :<?php echo $vehicule['dateDebut']?> ----> <?php echo $vehicule['dateFin']?></p>
+                            
+                            <p></p>
                             <p>
                                 <a href="details-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-primary" role="button">Détails</a> 
                                 <a href="#" class="btn btn-default" role="button">Réserver</a>
