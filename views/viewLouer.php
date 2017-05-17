@@ -120,7 +120,7 @@ and open the template in the editor.
                         <div class="control-group">
                             <label class="control-label" for="volume">Volume utile</label>
                             <div class="controls">
-                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" value="<?php if(isset($volumeUtile)){echo $volumeUtile;} ?>"> m3
+                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" min="0" value="<?php if(isset($volumeUtile)){echo $volumeUtile;} ?>"> m3
 
                             </div>
                         </div>

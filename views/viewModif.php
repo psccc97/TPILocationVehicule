@@ -215,7 +215,7 @@
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>
                             <div class="controls">
-                                <input id="image" name="image" accept="image/*" class="input-file" type="file" required><span><?php echo substr($vehicule['Image'], 13); ?></span>
+                                <input id="image" name="image" accept="image/*" class="input-file" type="file"><span><?php echo substr($vehicule['Image'], 13); ?></span>
                                 <img src="img/<?= $vehicule['Image'] ?>" alt="image not found" class="img-responsive"><input type="hidden" name="nomAncienneImage" value="<?= $vehicule['Image'] ?>">
                                 <?php if(isset($msgErrorFile)) :?>
                                 <p class="bg-danger text-danger"><?= $msgErrorFile ?></p>

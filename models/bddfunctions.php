@@ -10,36 +10,6 @@
 
 require_once 'connexionbdd.php';
 
-//FONCTION DE CALCUL DE DISTANCE///////////////////////////////////////////////////////////////
-
-/**
- * Lien : http://assemblysys.com/fr/calcul-de-distance-en-fonction-de-la-latitude-et-longitude-en-php/
- * @param type $point1_lat
- * @param type $point1_long
- * @param type $point2_lat
- * @param type $point2_long
- * @param type $unit
- * @param type $decimals
- * @return type
- */
-function distanceCalculation($point1_lat, $point1_long, $point2_lat, $point2_long, $unit = 'km', $decimals = 2) {
-	// Calcul de la distance en degrés
-	$degrees = rad2deg(acos((sin(deg2rad($point1_lat))*sin(deg2rad($point2_lat))) + (cos(deg2rad($point1_lat))*cos(deg2rad($point2_lat))*cos(deg2rad($point1_long-$point2_long)))));
- 
-	// Conversion de la distance en degrés à l'unité choisie (kilomètres, milles ou milles nautiques)
-	switch($unit) {
-		case 'km':
-			$distance = $degrees * 111.13384; // 1 degré = 111,13384 km, sur base du diamètre moyen de la Terre (12735 km)
-			break;
-		case 'mi':
-			$distance = $degrees * 69.05482; // 1 degré = 69,05482 milles, sur base du diamètre moyen de la Terre (7913,1 milles)
-			break;
-		case 'nmi':
-			$distance =  $degrees * 59.97662; // 1 degré = 59.97662 milles nautiques, sur base du diamètre moyen de la Terre (6,876.3 milles nautiques)
-	}
-	return round($distance, $decimals);
-}
-
 //FONCTION DE CONNEXION////////////////////////////////////////////////////////////////////////
 /**
  * Cette fonction récupère les donnée de la table utilisateur en fonction des paramètres
@@ -69,7 +39,7 @@ function recupereVehicules() {
     $sql = "SELECT *" .
             "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
             "WHERE v.idMarque = m.idMarque " .
-            "AND v.idVehicule = d.idVehicule ".
+            "AND v.idVehicule = d.idVehicule " .
             "AND v.idModele = mo.idModele " .
             "AND v.idKilometrage = k.idKilometrage";
     $requete = $bdd->prepare($sql);
@@ -89,7 +59,7 @@ function recupereVehicleSelonId($idVehicule) {
     $sql = "SELECT * " .
             "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
             "WHERE v.idMarque = m.idMarque " .
-            "AND v.idVehicule = d.idVehicule ".
+            "AND v.idVehicule = d.idVehicule " .
             "AND v.idModele = mo.idModele " .
             "AND v.idKilometrage = k.idKilometrage " .
             "AND v.idVehicule = :idVehicule";
@@ -151,8 +121,7 @@ function recupereIdMarque($nomMarque) {
     return $reslt;
 }
 
-function recupereNomMarqueSelonIdMarque($idMarque)
-{
+function recupereNomMarqueSelonIdMarque($idMarque) {
     $bdd = connexionBdd();
     $sql = "SELECT * FROM marques WHERE idMarque = :idMarque";
     $requete = $bdd->prepare($sql);
@@ -168,8 +137,7 @@ function recupereNomMarqueSelonIdMarque($idMarque)
  * @param type $idUtilisateur
  * @return type
  */
-function recupereVehiculesSelonIdUtilisateur($idUtilisateur)
-{
+function recupereVehiculesSelonIdUtilisateur($idUtilisateur) {
     $bdd = connexionBdd();
     $sql = 'SELECT * FROM `vehicules` AS v, modeles AS mo, marques AS m, kilometrages AS k, disponibilites AS d WHERE v.idVehicule = d.idVehicule AND v.idMarque = m.idMarque AND v.idModele = mo.idModele AND v.idKilometrage = k.idKilometrage AND idUtilisateur = :idUtilisateur';
     $requete = $bdd->prepare($sql);
@@ -178,8 +146,6 @@ function recupereVehiculesSelonIdUtilisateur($idUtilisateur)
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
     return $reslt;
 }
-
-
 
 //FONCTION D'AJOUT//////////////////////////////////////////////////////////////////////////
 /**
@@ -200,9 +166,9 @@ function recupereVehiculesSelonIdUtilisateur($idUtilisateur)
  * @param type $dateFin
  */
 function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $idMarque, $idModele, $idKilometrage, $idUtilisateur, $dateDebut, $dateFin, $longitude, $latitude) {
-    $bdd = connexionBdd();    
+    $bdd = connexionBdd();
     $nbrPlace = intval($nbrPlace);
-    $volumeUtile = intval($volumeUtile);            
+    $volumeUtile = intval($volumeUtile);
 
     //Ajout d'un véhicule//
     $sql = "INSERT INTO vehicules(Type, Description, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, Longitude, Latitude, idMarque, idModele, idKilometrage, idUtilisateur)" .
@@ -210,9 +176,9 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete = $bdd->prepare($sql);
     $iduniq = uniqid();
     $nomImage = $image['name'];
-    $destination = "img/" .$iduniq .$nomImage;    
+    $destination = "img/" . $iduniq . $nomImage;
     $source = $image['tmp_name'];
-    $nomImageFinal = $iduniq.$nomImage;
+    $nomImageFinal = $iduniq . $nomImage;
 
     $requete->bindParam(':type', $type);
     $requete->bindParam(':description', $description);
@@ -222,7 +188,7 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete->bindParam(':volumeUtile', $volumeUtile);
     $requete->bindParam(':motorisation', $motorisation);
     $requete->bindParam(':image', $nomImageFinal);
-    $requete->bindParam(':idMarque', $idMarque);    
+    $requete->bindParam(':idMarque', $idMarque);
     $requete->bindParam(':idModele', $idModele);
     $requete->bindParam(':idKilomtrage', $idKilometrage);
     $requete->bindParam(':idUtilisateur', $idUtilisateur);
@@ -246,10 +212,7 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete->execute();
 }
 
-
-
-function reserverVehicule()
-{
+function reserverVehicule() {
     $bdd = connexionBdd();
 }
 
@@ -260,53 +223,74 @@ function reserverVehicule()
  * @param type $idVehicule
  * @return type
  */
-function supprimerVehicule($idVehicule)
-{
+function supprimerVehicule($idVehicule) {
     //Suppression de la disponibiliter en fonction de l'id du véhicule//
-    $bdd=  connexionBdd();
+    $bdd = connexionBdd();
     $sql = "DELETE FROM disponibilites WHERE idVehicule = :idVehicule";
     $requete = $bdd->prepare($sql);
     $requete->bindParam('idVehicule', $idVehicule);
     $requete->execute();
-    
+
     //Suppression du véhicule en fonction de son id//
     $sql = "DELETE FROM vehicules WHERE idVehicule = :idVehicule";
     $requete = $bdd->prepare($sql);
     $requete->bindParam('idVehicule', $idVehicule);
-    $reslt = $requete->execute();    
-    return $reslt;    
+    $reslt = $requete->execute();
+    return $reslt;
 }
 
-
 //FONCTION DE MODIFICATION DE DONNEES/////////////////////////////////////////////////////////////////////////////////////
-function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $idMarque, $idModele, $idKilometrage, $dateDebut, $dateFin, $longitude, $latitude)
-{
+function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $idMarque, $idModele, $idKilometrage, $dateDebut, $dateFin, $longitude, $latitude) {
     $bdd = connexionBdd();
-    $sql = "UPDATE vehicles, disponibilites ".
-        "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, Image=:image, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude ".
-        "WHERE idVehicule=:idVehicule";
-    $requete = $bdd->prepare($sql);
-    $requete->bindParam(':type', $type);
-    $requete->bindParam(':description', $description);
-    $requete->bindParam(':annee', $annee);
-    $requete->bindParam(':categorie', $categorie);
-    $requete->bindParam(':nbrPlace', $nbrPlace);
-    $requete->bindParam(':volumeUtile', $volumeUtile);
-    $requete->bindParam(':motorisation', $motorisation);
-    $requete->bindParam(':image', $image);
-    $requete->bindParam(':idMarque', $idMarque);
-    $requete->bindParam(':idModele', $idModele);
-    $requete->bindParam(':idKilometrage', $idKilometrage);
-    $requete->bindParam(':dateDebut', $dateDebut);
-    $requete->bindParam(':dateFin', $dateFin);
-    $requete->bindParam(':longitude', $longitude);
-    $requete->bindParam(':latitude', $latitude);
-    
-    $reslt = $requete->execute();
-    
-    if($reslt){
+    if ($image == "") {
+        $sql = "UPDATE vehicules, disponibilites " .
+                "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude " .
+                "WHERE idVehicule=:idVehicule";
+        $requete = $bdd->prepare($sql);
+        $requete->bindParam(':type', $type);
+        $requete->bindParam(':description', $description);
+        $requete->bindParam(':annee', $annee);
+        $requete->bindParam(':categorie', $categorie);
+        $requete->bindParam(':nbrPlace', $nbrPlace);
+        $requete->bindParam(':volumeUtile', $volumeUtile);
+        $requete->bindParam(':motorisation', $motorisation);
+        $requete->bindParam(':idMarque', $idMarque);
+        $requete->bindParam(':idModele', $idModele);
+        $requete->bindParam(':idKilometrage', $idKilometrage);
+        $requete->bindParam(':dateDebut', $dateDebut);
+        $requete->bindParam(':dateFin', $dateFin);
+        $requete->bindParam(':longitude', $longitude);
+        $requete->bindParam(':latitude', $latitude);
+
+        $reslt = $requete->execute();
+    } else {
+        $sql = "UPDATE vehicules, disponibilites " .
+                "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, Image=:image, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude " .
+                "WHERE idVehicule=:idVehicule";
+        $requete = $bdd->prepare($sql);
+        $requete->bindParam(':type', $type);
+        $requete->bindParam(':description', $description);
+        $requete->bindParam(':annee', $annee);
+        $requete->bindParam(':categorie', $categorie);
+        $requete->bindParam(':nbrPlace', $nbrPlace);
+        $requete->bindParam(':volumeUtile', $volumeUtile);
+        $requete->bindParam(':motorisation', $motorisation);
+        $requete->bindParam(':image', $image);
+        $requete->bindParam(':idMarque', $idMarque);
+        $requete->bindParam(':idModele', $idModele);
+        $requete->bindParam(':idKilometrage', $idKilometrage);
+        $requete->bindParam(':dateDebut', $dateDebut);
+        $requete->bindParam(':dateFin', $dateFin);
+        $requete->bindParam(':longitude', $longitude);
+        $requete->bindParam(':latitude', $latitude);
+
+        $reslt = $requete->execute();
+    }
+
+
+    if ($reslt) {
         return true;
-    }  else {
+    } else {
         return FALSE;
     }
 }
