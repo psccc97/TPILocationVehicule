@@ -173,7 +173,7 @@ session_start();
                                 <?php endif; ?>
                                 <p>
                                     <a href="details-<?php echo $vf['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 
-                                    <a href="#" class="btn btn-default" role="button">Réserver</a>
+                                    <a href="reserver.html" class="btn btn-default" role="button">Réserver</a>
                                 </p>
                             </div>
                         </div>
@@ -195,8 +195,12 @@ session_start();
                             <?php endif; ?>
                             <p></p>
                             <p>
-                                <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 
-                                <a href="#" class="btn btn-default" role="button">Réserver</a>
+                                <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a>
+                                <?php if($vehicule['idUtilisateur'] != $_SESSION['idUtilisateur']): ?>
+                                <a href="reserver-<?= $vehicule['idVehicule']; ?>.html" class="btn btn-default" role="button">Réserver</a>
+                                <?php elseif($_SESSION['idUtilisateur'] == NULL): ?>
+                                <a href="reserver-<?= $vehicule['idVehicule']; ?>.html" class="btn btn-default" role="button">Réserver</a>
+                                <?php endif; ?>
                             </p>
                         </div>
                     </div>

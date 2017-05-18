@@ -6,8 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <?php
-    include 'include/header.php';
-    $i = 0;
+    include 'include/header.php';    
     ?>
     <head>
         <meta charset="UTF-8">
@@ -49,7 +48,7 @@ and open the template in the editor.
                         <!-- Text input Modèle-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Modèle</label>
+                            <label class="control-label col-md-2" for="modele">Modèle</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select name="modele" required="" class="form-control input-md">                                    
@@ -69,7 +68,7 @@ and open the template in the editor.
                         <!-- Number input Année-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Année</label>
+                            <label class="control-label col-md-2" for="annee">Année</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="annee" name="annee" type="number" placeholder="" class="form-control input-md" min="1900" max="<?php echo date("Y"); ?>" value="<?php if (isset($annee)) {echo $annee;}?>">
@@ -80,7 +79,7 @@ and open the template in the editor.
                         <!-- Select Basic Catégorie -->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Catégorie</label>
+                            <label class="control-label col-md-2" for="categorie">Catégorie</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="categorie" name="categorie" class="form-control input-md" required>
@@ -94,7 +93,7 @@ and open the template in the editor.
                         <!-- Number input Nombre de place-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Nombre de place</label>
+                            <label class="control-label col-md-2" for="nbrPlace">Nombre de place</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="form-control input-md" max="9" min="0" value="<?php if (isset($nbrPlace)) {echo $nbrPlace;}?>">
@@ -105,7 +104,7 @@ and open the template in the editor.
                         <!-- Number input Volume utile-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Volume utile</label>
+                            <label class="control-label col-md-2" for="volume">Volume utile</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="volume" name="volume" type="number" placeholder="" class="form-control input-md" min="0" value="<?php if (isset($volumeUtile)) {echo $volumeUtile;}?>"> m3
@@ -116,7 +115,7 @@ and open the template in the editor.
                         <!-- Date input Date début-->
                         <div class="form-group">
                             <div class="row">
-                                <label class="control-label col-md-4" for="marque">Date de dàbut</label>
+                                <label class="control-label col-md-4" for="dateDebut">Date de dàbut</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
@@ -127,7 +126,7 @@ and open the template in the editor.
                         <!-- Date input Date fin-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-4" for="marque">Date de fin</label>
+                            <label class="control-label col-md-4" for="dateFin">Date de fin</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" required>
@@ -144,7 +143,7 @@ and open the template in the editor.
                         <!-- Textarea Description-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Description</label>
+                            <label class="control-label col-md-2" for="description">Description</label>
                             </div>
                             <div class="controls col-md-4">                
                                 <textarea id="description" name="description" class="form-control input-md"><?php if (isset($description)) {echo $description;}?></textarea>
@@ -154,7 +153,7 @@ and open the template in the editor.
                         <!-- Select Basic Motorisation-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Motorisation</label>
+                            <label class="control-label col-md-2" for="motorisation">Motorisation</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="motorisation" name="motorisation" class="form-control input-md" required>
@@ -170,7 +169,7 @@ and open the template in the editor.
                         <!-- Select Basic Kilométrage-->
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Kilométrages</label>
+                            <label class="control-label col-md-2" for="kilometrage">Kilométrages</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="kilometrage" name="kilometrage" class="form-control input-md" required>
@@ -188,7 +187,7 @@ and open the template in the editor.
                         <!-- Select Basic Type-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Type</label>
+                            <label class="control-label col-md-2" for="type">Type</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="type" name="type" class="form-control input-md">
@@ -202,7 +201,7 @@ and open the template in the editor.
                         <!-- Input Number Longitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Longitude</label>
+                            <label class="control-label col-md-2" for="longitude">Longitude</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($longitude)) {echo $longitude;}?>">
@@ -213,7 +212,7 @@ and open the template in the editor.
                         <!-- Input Number Latitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Latitude</label>
+                            <label class="control-label col-md-2" for="latitude">Latitude</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($latitude)) {echo $latitude;}?>">
@@ -225,7 +224,7 @@ and open the template in the editor.
                         <!-- File Button Image--> 
                         <div class="control-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Image</label>
+                            <label class="control-label col-md-2" for="image">Image</label>
                             </div>
                             <div class="controls col-md-8">
                                 <input id="image" name="image" accept="image/*" class="input-file" type="file" required>

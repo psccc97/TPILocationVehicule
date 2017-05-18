@@ -37,7 +37,7 @@
                         <!-- Text input Modèle-->
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Modèle</label>
+                            <label class="control-label col-md-2" for="modele">Modèle</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="modele" name="modele" class="form-control input-md" required="">
@@ -55,7 +55,7 @@
                         <!-- Number input Année-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Année</label>
+                            <label class="control-label col-md-2" for="annee">Année</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="annee" name="annee" type="number" placeholder="" class="form-control input-md" min="1900" max="<?php echo date("Y"); ?>" value="<?php echo $vehicule['Annee'];?>">
@@ -66,7 +66,7 @@
                         <!-- Select Basic Catégorie -->
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Catégorie</label>
+                            <label class="control-label col-md-2" for="categorie">Catégorie</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="categorie" name="categorie" class="form-control input-md" required>
@@ -80,7 +80,7 @@
                         <!-- Number input Nombre de places-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Nombre de places</label>
+                            <label class="control-label col-md-2" for="nbrPlace">Nombre de places</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="nbrPalce" name="nbrPlace" type="number" placeholder="" class="form-control input-md" max="9" min="0" value="<?php echo $vehicule['nbrPlace']?>">
@@ -91,7 +91,7 @@
                         <!-- Number input Volume utile-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Volume utile</label>
+                            <label class="control-label col-md-2" for="volume">Volume utile</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="volume" name="volume" type="number" placeholder="" class="form-control input-md" min="0" value="<?php echo $vehicule['volumeUtile'] ?>"> m3
@@ -101,7 +101,7 @@
                         <!-- Date input Date début-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-4" for="marque">Date de début</label>
+                            <label class="control-label col-md-4" for="dateDebut">Date de début</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateDebut" value="<?php echo $vehicule['dateDebut'] ?>" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo $vehicule['dateDebut'] ?>">
@@ -112,7 +112,7 @@
                         <!-- Date input Date fin-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-4" for="marque">Date de fin</label>
+                            <label class="control-label col-md-4" for="dateFin">Date de fin</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateFin" name="dateFin" type="date" value="<?php echo $vehicule['dateFin']?>" placeholder="" class="form-control input-md" required>
@@ -129,7 +129,7 @@
                         <!-- Textarea Description-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Description</label>
+                            <label class="control-label col-md-2" for="description">Description</label>
                             </div>
                             <div class="controls col-md-4">                    
                                 <textarea id="description" class="form-control" name="description"><?php echo $vehicule['Description']?></textarea>
@@ -139,7 +139,7 @@
                         <!-- Select Basic Motorisation-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Motorisation</label>
+                            <label class="control-label col-md-2" for="motorisation">Motorisation</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="motorisation" name="motorisation" class="form-control input-md" required>
@@ -155,7 +155,7 @@
                         <!-- Select Basic Kilométrage-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Kilométrage</label>
+                            <label class="control-label col-md-2" for="kilometrage">Kilométrage</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="kilometrage" name="kilometrage" class="form-control input-md">
@@ -173,7 +173,7 @@
                         <!-- Select Basic Type-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Type</label>
+                            <label class="control-label col-md-2" for="type">Type</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="type" name="type" class="form-control input-md">
@@ -187,7 +187,7 @@
                         <!-- Input Number Longitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Longitude</label>
+                            <label class="control-label col-md-2" for="longitude">Longitude</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?= $vehicule['Longitude'] ?>">
@@ -198,7 +198,7 @@
                         <!-- Input Number Latitude--> 
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Latitude</label>
+                            <label class="control-label col-md-2" for="latitude">Latitude</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php echo $vehicule['Latitude'] ?>">
@@ -210,7 +210,7 @@
                         <!-- File Button Image--> 
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Image</label>
+                            <label class="control-label col-md-2" for="image">Image</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="image" name="image" accept="image/*" class="input-file" type="file"><span><?php echo substr($vehicule['Image'], 13); ?></span>
@@ -224,8 +224,7 @@
                     </div>
 
                     <!-- Button Enregistrer et Annuler-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="enregistrer"></label>
+                    <div class="form-group">                        
                         <div class="col-md-4">
                             <input type="hidden" name="idVehicule" value="<?php echo $vehicule['idVehicule'] ?>">
                             <button id="modifier" name="modifier" class="btn btn-success">Modifier</button>

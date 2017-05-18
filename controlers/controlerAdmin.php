@@ -9,6 +9,7 @@ if(isset($_SESSION['prenom']) && $_SESSION['status'] == 1){
 }
  else {
     header('location:accueil.php');
+    exit;
 }
 
 include 'views/viewAdmin.php';

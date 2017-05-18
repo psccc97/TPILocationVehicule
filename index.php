@@ -44,5 +44,7 @@ if (empty($action)) {
         case 'rechercher':
             require_once 'controlers/controlerRechercher.php';
             break;
-        
+        case 'reserver':
+            require_once 'controlers/controlerReserver.php';
+            break;
     }
