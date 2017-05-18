@@ -40,5 +40,9 @@ if (empty($action)) {
             break;
         case 'modificaton':
             require_once 'controllers/controllerModif.php';
+            break;
+        case 'rechercher':
+            require_once 'controllers/controllerRechercher.php';
+            break;
         
     }

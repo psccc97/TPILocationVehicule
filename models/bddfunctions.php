@@ -147,6 +147,60 @@ function recupereVehiculesSelonIdUtilisateur($idUtilisateur) {
     return $reslt;
 }
 
+function recupereVehiculesSelonRecherche($idMarque = null, $idModele = null, $idKilometrage = null, $type = null, $categorie = null, $motorisation = null, $annee = null, $volumeUtile = null, $nbrPlace = null, $dateDebut = null, $dateFin = null){
+    $bdd = connexionBdd();
+    $sql = 'SELECT * FROM vehicules AS v, disponibilites AS d'.
+            'WHERE v.idVehicule = d.idVehicule';
+    if($idMarque != NULL){
+        $sql .= " AND v.idMarque =:idMarque";
+    }
+    if($idModele != NULL){
+        $sql .= " AND v.idModele = :idModele";
+    }
+    if($idKilometrage != NULL){
+        $sql .= " AND v.idKilometrage = :idKilometrage";
+    }
+    if($categorie != NULL){
+        $sql .= " AND v.Categorie = :categorie";
+    }
+    if($motorisation != NULL){
+        $sql .= " AND v.Motorisation = :motorisation";
+    }
+    if($annee != NULL){
+        $sql .= " AND v.Annee = :annee";
+    }
+    if($volumeUtile != NULL){
+        $sql .= " AND v.volumeUtile = :volumeUtile";
+    }
+    if($nbrPlace != NULL){
+        $sql .= " AND v.nbrPlace = :nbrPlace";
+    }
+    if($dateDebut != NULL){
+        $sql .= " AND d.dateDebut = :dateDebut";
+    }
+    if($dateFin != NULL){
+        $sql .= " AND d.dateFin = :dateFin";
+    }
+    if($type != NULL){
+        $sql .= " AND v.Type = :type";
+    }
+    
+    $requete = $bdd->prepare($sql);
+    
+    if($idMarque != NULL){
+        $requete->bindParam(':idMarque', $idMarque);
+    }
+    if($idModele != NULL){
+        $requete->bindParam(':idModele', $idModele);
+    }
+    if($idKilometrage != NULL){
+        $requete->bindParam(':idKilometrage', $idKilometrage);
+    }
+    if($categorie != NULL){
+        $requete->bindParam(':categorie', $categorie);
+    }
+}
+
 //FONCTION D'AJOUT//////////////////////////////////////////////////////////////////////////
 /**
  * 
