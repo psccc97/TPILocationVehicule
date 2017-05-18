@@ -169,7 +169,7 @@ session_start();
                                 <p>Description :<?php echo $vf['Description'] ?></p>
                                 <p>Disponibilité :<?php echo $vf['dateDebut'] ?> ----> <?php echo $vf['dateFin'] ?></p>
                                 <?php if (isset($resultatDistance)) : ?>
-                                    <p>Distance : <?= $resultatDistance[$vf['idVehicule']] ?></p>
+                                    <p>Distance : <?= $resultatDistance[$vf['idVehicule']] ?> Km</p>
                                 <?php endif; ?>
                                 <p>
                                     <a href="details-<?php echo $vf['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 

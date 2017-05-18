@@ -36,7 +36,7 @@ and open the template in the editor.
                                     <td><?php echo $details['Categorie']; ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre de place </td>
+                                    <td>Nombre de place<?= $details['nbrPlace']>1?'s':'' ?> </td>
                                     <td><?php echo $details['nbrPlace']; ?></td>
                                 </tr>
                                 <tr>

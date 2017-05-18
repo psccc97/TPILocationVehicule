@@ -15,34 +15,34 @@ if (empty($action)) {
 
     switch ($action) {
         case 'accueil':
-            require_once 'controllers/controllerIndex.php';
+            require_once 'controlers/controlerIndex.php';
             break;
         case 'connexion':
-            require_once 'controllers/controllerConnexion.php';
+            require_once 'controlers/controlerConnexion.php';
             break;
         case 'details':
-            require_once 'controllers/controllerDetails.php';
+            require_once 'controlers/controlerDetails.php';
             break;
         case 'deconnexion':
-            require_once 'controllers/controllerDeconnexion.php';
+            require_once 'controlers/controlerDeconnexion.php';
             break;
         case 'louer':
-            require_once 'controllers/controllerLouer.php';
+            require_once 'controlers/controlerLouer.php';
             break;
         case 'mesvehiculesenlocation':
-            require_once 'controllers/controllerMesVehiculesEnLocation.php';
+            require_once 'controlers/controlerMesVehiculesEnLocation.php';
             break;
         case 'supprimer':
-            require_once 'controllers/controllerSupprimer.php';
+            require_once 'controlers/controlerSupprimer.php';
             break;
         case 'admin':
-            require_once 'controllers/controllerAdmin.php';
+            require_once 'controlers/controlerAdmin.php';
             break;
         case 'modificaton':
-            require_once 'controllers/controllerModif.php';
+            require_once 'controlers/controlerModif.php';
             break;
         case 'rechercher':
-            require_once 'controllers/controllerRechercher.php';
+            require_once 'controlers/controlerRechercher.php';
             break;
         
     }

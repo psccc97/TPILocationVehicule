@@ -11,7 +11,7 @@ if (filter_has_var(INPUT_POST, 'modifier')) {
     $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
     $annee = trim(filter_input(INPUT_POST, 'annee', FILTER_VALIDATE_INT));
     $categorie = trim(filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_STRING));
-    $nbrPlace = trim(filter_input(INPUT_POST, 'nbrPlace', FILTER_VALIDATE_INT));
+    $nbrPlace = trim(filter_input(INPUT_POST, 'nbrPlace', FILTER_VALIDATE_INT));    
     $volumeUtile = trim(filter_input(INPUT_POST, 'volume', FILTER_VALIDATE_INT));
     $motorisation = trim(filter_input(INPUT_POST, 'motorisation', FILTER_SANITIZE_STRING));
     $idMarque = trim(filter_input(INPUT_POST, 'marque', FILTER_VALIDATE_INT));

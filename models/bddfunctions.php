@@ -89,7 +89,7 @@ function recupereKilometrages() {
  */
 function recupereMarques() {
     $bdd = connexionBdd();
-    $sql = "SELECT * FROM marques";
+    $sql = "SELECT * FROM marques ORDER BY nomMarque ASC";
     $requete = $bdd->prepare($sql);
     $requete->execute();
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -98,7 +98,7 @@ function recupereMarques() {
 
 function recupereModeles() {
     $bdd = connexionBdd();
-    $sql = "SELECT * FROM modeles";
+    $sql = "SELECT * FROM modeles ORDER BY nomModele ASC";
     $requete = $bdd->prepare($sql);
     $requete->execute();
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -137,93 +137,114 @@ function recupereNomMarqueSelonIdMarque($idMarque) {
  * @param type $idUtilisateur
  * @return type
  */
-function recupereVehiculesSelonIdUtilisateur($idUtilisateur) {
+function recupereVehiculesSelonIdUtilisateur($idUtilisateur = null) {
     $bdd = connexionBdd();
-    $sql = 'SELECT * FROM `vehicules` AS v, modeles AS mo, marques AS m, kilometrages AS k, disponibilites AS d WHERE v.idVehicule = d.idVehicule AND v.idMarque = m.idMarque AND v.idModele = mo.idModele AND v.idKilometrage = k.idKilometrage AND idUtilisateur = :idUtilisateur';
+    $sql = 'SELECT * '
+            . 'FROM `vehicules` AS v, modeles AS mo, marques AS m, kilometrages AS k, disponibilites AS d '
+            . 'WHERE '
+            . 'v.idVehicule = d.idVehicule AND '
+            . 'v.idMarque = m.idMarque AND '
+            . 'v.idModele = mo.idModele AND '
+            . 'v.idKilometrage = k.idKilometrage ';
+    if ($idUtilisateur != null)
+        $sql .= 'AND idUtilisateur = :idUtilisateur';
     $requete = $bdd->prepare($sql);
-    $requete->bindParam(':idUtilisateur', $idUtilisateur);
+    if ($idUtilisateur != null)
+        $requete->bindParam(':idUtilisateur', $idUtilisateur);
     $requete->execute();
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
     return $reslt;
 }
 
-function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $type, $categorie, $motorisation, $annee, $volumeUtile, $nbrPlace, $dateDebut, $dateFin){
+function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $type, $categorie, $motorisation, $annee, $volumeUtile, $nbrPlace, $dateDebut, $dateFin) {
     $bdd = connexionBdd();
-    $sql = "SELECT * FROM vehicules AS v, disponibilites AS d, modeles AS mo, marques AS m, kilometrages AS k ".
-           "WHERE v.idMarque = m.idMarque " .
+    $sql = "SELECT * FROM vehicules AS v, disponibilites AS d, modeles AS mo, marques AS m, kilometrages AS k " .
+            "WHERE v.idMarque = m.idMarque " .
             "AND v.idVehicule = d.idVehicule " .
             "AND v.idModele = mo.idModele " .
             "AND v.idKilometrage = k.idKilometrage";
-    if($idMarque !=""){
+    if ($idMarque != "") {
         $sql .= " AND v.idMarque =:idMarque";
     }
-    if($idModele !=""){
+    if ($idModele != "") {
         $sql .= " AND v.idModele = :idModele";
     }
-    if($idKilometrage !=""){
+    if ($idKilometrage != "") {
         $sql .= " AND v.idKilometrage = :idKilometrage";
     }
-    if($categorie !=""){
+    if ($categorie != "") {
         $sql .= " AND v.Categorie = :categorie";
     }
-    if($motorisation !=""){
+    if ($motorisation != "") {
         $sql .= " AND v.Motorisation = :motorisation";
     }
-    if($annee !=""){
+    if ($annee != "") {
         $sql .= " AND v.Annee = :annee";
     }
-    if($volumeUtile !=""){
+    if ($volumeUtile != "") {
         $sql .= " AND v.volumeUtile = :volumeUtile";
     }
-    if($nbrPlace !=""){
+    if ($nbrPlace != "") {
         $sql .= " AND v.nbrPlace = :nbrPlace";
     }
-    if($dateDebut !=""){
-        $sql .= " AND d.dateDebut = :dateDebut";
+
+    if ($dateDebut != "" && $dateFin != "") {
+        $sql .= " AND ( :dateDebut >= d.dateDebut AND :dateFin <= d.dateFin)";
     }
-    if($dateFin !=""){
-        $sql .= " AND d.dateFin = :dateFin";
-    }
-    if($type !=""){
+    /*
+      if($dateDebut !=""){
+      $sql .= " AND d.dateDebut = :dateDebut";
+      }
+      if($dateFin !=""){
+      $sql .= " AND d.dateFin = :dateFin";
+      }
+     */
+    if ($type != "") {
         $sql .= " AND v.Type = :type";
     }
-    
+
     $requete = $bdd->prepare($sql);
-    
-    if($idMarque !=""){
+
+    if ($idMarque != "") {
         $requete->bindParam(':idMarque', $idMarque);
     }
-    if($idModele !=""){
+    if ($idModele != "") {
         $requete->bindParam(':idModele', $idModele);
     }
-    if($idKilometrage !=""){
+    if ($idKilometrage != "") {
         $requete->bindParam(':idKilometrage', $idKilometrage);
     }
-    if($categorie !=""){
+    if ($categorie != "") {
         $requete->bindParam(':categorie', $categorie);
     }
-    if($motorisation !=""){
+    if ($motorisation != "") {
         $requete->bindParam(':motorisation', $motorisation);
     }
-    if($annee !=""){
+    if ($annee != "") {
         $requete->bindParam(':annee', $annee);
     }
-    if($volumeUtile !=""){
+    if ($volumeUtile != "") {
         $requete->bindParam(':volumeUtile', $volumeUtile);
     }
-    if($nbrPlace !=""){
+    if ($nbrPlace != "") {
         $requete->bindParam(':nbrPlace', $nbrPlace);
     }
-    if($dateDebut !=""){
+    if ($dateDebut != "" && $dateFin != "") {
         $requete->bindParam(':dateDebut', $dateDebut);
-    }
-    if($dateFin !=""){
         $requete->bindParam(':dateFin', $dateFin);
     }
-    if($type !=""){
+    /*
+      if($dateDebut !=""){
+      $requete->bindParam(':dateDebut', $dateDebut);
+      }
+      if($dateFin !=""){
+      $requete->bindParam(':dateFin', $dateFin);
+      }
+     */
+    if ($type != "") {
         $requete->bindParam(':type', $type);
     }
-    
+
     $requete->execute();
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
     return $reslt;
@@ -282,8 +303,6 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     }
 
 
-
-
     //Ajout d'une plage de diponibilié//
     $sql = "INSERT INTO disponibilites(dateDebut, dateFin, idVehicule)" .
             "VALUES(:dateDebut, :dateFin, :vehicule)";
@@ -326,9 +345,24 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
     $bdd = connexionBdd();
     if ($image == "") {
         $sql = "UPDATE vehicules, disponibilites " .
-                "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude " .
-                "WHERE idVehicule=:idVehicule";
+                "SET "
+                . "Type=:type, "
+                . "Description=:description, "
+                . "Annee=:annee, "
+                . "Categorie=:categorie, "
+                . "nbrPlace=:nbrPlace, "
+                . "volumeUtile=:volumeUtile, "
+                . "Motorisation=:motorisation, "
+                . "idMarque=:idMarque, "
+                . "idModele=:idModele, "
+                . "idKilometrage=:idKilometrage, "
+                . "dateDebut=:dateDebut, "
+                . "dateFin=:dateFin, "
+                . "Longitude=:longitude, "
+                . "Latitude=:latitude " .
+                "WHERE vehicules.idVehicule=:idVehicule";
         $requete = $bdd->prepare($sql);
+
         $requete->bindParam(':type', $type);
         $requete->bindParam(':description', $description);
         $requete->bindParam(':annee', $annee);
@@ -343,6 +377,8 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
         $requete->bindParam(':dateFin', $dateFin);
         $requete->bindParam(':longitude', $longitude);
         $requete->bindParam(':latitude', $latitude);
+        $requete->bindParam(':idVehicule', $idVehicule);
+
 
         $reslt = $requete->execute();
         if ($reslt) {
@@ -353,7 +389,7 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
     } else {
         $sql = "UPDATE vehicules, disponibilites " .
                 "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, Image=:image, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude " .
-                "WHERE idVehicule=:idVehicule";
+                "WHERE vehicules.idVehicule=:idVehicule";
         $requete = $bdd->prepare($sql);
         $requete->bindParam(':type', $type);
         $requete->bindParam(':description', $description);
@@ -370,6 +406,7 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
         $requete->bindParam(':dateFin', $dateFin);
         $requete->bindParam(':longitude', $longitude);
         $requete->bindParam(':latitude', $latitude);
+        $requete->bindParam(':idVehicule', $idVehicule);
 
 
         $reslt = $requete->execute();

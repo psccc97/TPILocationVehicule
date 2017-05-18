@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <?php
     include 'include/header.php';
-    $i=0;
+    $i = 0;
     ?>
     <head>
         <meta charset="UTF-8">
@@ -24,15 +24,17 @@ and open the template in the editor.
 
                     <!-- Form Name -->
                     <legend>Mettre en location un véhicule</legend>
-
+                    <div class="row">
                     <div class="col-md-6 col-xs-6">
                         <!-- Text input Marque-->
-                        <div class="control-group">
-                            <label class="control-label" for="marque">Marque</label>
-                            <div class="controls">
-                                <select name="marque" required="">                                    
-                                    <?php 
-                                        foreach ($marques as $ma) {
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Marque</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select name="marque" required="" class="form-control input-md">                                    
+                                    <?php
+                                    foreach ($marques as $ma) {
                                         if ($ma['idMarque'] == $idMarque) {
                                             echo '<option selected="true" value="' . $ma['idMarque'] . '">' . $ma['nomMarque'] . '</option>';
                                         } else {
@@ -41,104 +43,94 @@ and open the template in the editor.
                                     }
                                     ?> 
                                 </select>
-
-
                             </div>
                         </div>
 
                         <!-- Text input Modèle-->
-                        <div class="control-group">
-                            <label class="control-label" for="modele">Modèle</label>
-                            <div class="controls">
-                                <select name="modele" required="">                                    
-                                    <?php foreach ($modeles as $m) :?>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Modèle</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select name="modele" required="" class="form-control input-md">                                    
+                                    <?php foreach ($modeles as $m) : ?>
                                         <?php if ($m['idModele'] == $idModele): ?>
-                                        <option selected="true" value="<?php echo $m['idModele']?>"><?php echo $m['nomModele'] ?></option>
-                                        <?php else :?>
-                                            <option value="<?php echo $m['idModele']?>"><?php echo $m['nomModele']?></option>;
+                                            <option selected="true" value="<?php echo $m['idModele'] ?>"><?php echo $m['nomModele'] ?></option>
+                                        <?php else : ?>
+                                            <option value="<?php echo $m['idModele'] ?>"><?php echo $m['nomModele'] ?></option>;
                                         <?php endif ?>
-                                    
-                                    <?php endforeach;?> 
+
+                                    <?php endforeach; ?> 
                                 </select>
 
                             </div>
                         </div>
 
                         <!-- Number input Année-->
-                        <div class="control-group">
-                            <label class="control-label" for="annee">Année</label>
-                            <div class="controls">
-                                <input id="annee" name="annee" type="number" placeholder="" class="input-large" min="1900" max="<?php echo date("Y"); ?>" value="<?php if(isset($annee)){echo $annee;} ?>">
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Année</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <input id="annee" name="annee" type="number" placeholder="" class="form-control input-md" min="1900" max="<?php echo date("Y"); ?>" value="<?php if (isset($annee)) {echo $annee;}?>">
 
                             </div>
                         </div>                        
 
                         <!-- Select Basic Catégorie -->
-                        <div class="control-group">
-                            <label class="control-label" for="categorie">Catégorie</label>
-                            <div class="controls">
-                                
-                                    <?php if(isset($categorie) && $categorie == "Familiale") : ?> 
-                                <select id="categorie" name="categorie" class="input-large" required>
-                                    <option value="Familiale" selected="true">Familiale</option>
-                                    <option value="Citadine">Citadine</option>
-                                    <option value="Sportive">Sportive</option>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Catégorie</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select id="categorie" name="categorie" class="form-control input-md" required>
+                                        <option value="Familiale" <?= (isset($categorie) && $categorie=="Familiale") ? 'selected': '' ?>>Familiale</option>
+                                        <option value="Citadine" <?= (isset($categorie) && $categorie=="Citadine") ? 'selected': '' ?>>Citadine</option>
+                                        <option value="Sportive" <?= (isset($categorie) && $categorie=="Sportive") ? 'selected': '' ?>>Sportive</option>
                                 </select>
-                                    
-                                    <?php elseif(isset($categorie) && $categorie == "Citadine") : ?>  
-                                <select id="categorie" name="categorie" class="input-large" required>
-                                    <option value="Familiale">Familiale</option>
-                                    <option value="Citadine" selected="true">Citadine</option>
-                                    <option value="Sportive">Sportive</option>
-                                </select>
-                                    <?php elseif(isset($categorie) && $categorie == "Sportive") : ?>
-                                <select id="categorie" name="categorie" class="input-large" required>
-                                    <option value="Familiale">Familiale</option>
-                                    <option value="Citadine">Citadine</option>
-                                    <option value="Sportive" selected="true">Sportive</option>
-                                </select>
-                                    <?php else : ?>
-                                <select id="categorie" name="categorie" class="input-large" required>
-                                    <option value="Familiale">Familiale</option>
-                                    <option value="Citadine">Citadine</option>
-                                    <option value="Sportive">Sportive</option>
-                                </select>
-                                <?php endif; ?>
                             </div>
                         </div>
 
                         <!-- Number input Nombre de place-->
-                        <div class="control-group">
-                            <label class="control-label" for="nbrPlace">Nombre de place</label>
-                            <div class="controls">
-                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0" value="<?php if(isset($nbrPlace)){echo $nbrPlace;} ?>">
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Nombre de place</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="form-control input-md" max="9" min="0" value="<?php if (isset($nbrPlace)) {echo $nbrPlace;}?>">
 
                             </div>
                         </div>                        
 
                         <!-- Number input Volume utile-->
-                        <div class="control-group">
-                            <label class="control-label" for="volume">Volume utile</label>
-                            <div class="controls">
-                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" min="0" value="<?php if(isset($volumeUtile)){echo $volumeUtile;} ?>"> m3
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Volume utile</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <input id="volume" name="volume" type="number" placeholder="" class="form-control input-md" min="0" value="<?php if (isset($volumeUtile)) {echo $volumeUtile;}?>"> m3
 
                             </div>
                         </div>
 
                         <!-- Date input Date début-->
-                        <div class="control-group">
-                            <label class="control-label" for="dateDebut">Date de début</label>
-                            <div class="controls">
-                                <input id="dateDebut" name="dateDebut" type="date" class="input-large" required min="<?php echo date("Y-m-d"); ?>">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col-md-4" for="marque">Date de dàbut</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
 
                             </div>
                         </div>
 
                         <!-- Date input Date fin-->
-                        <div class="control-group">
-                            <label class="control-label" for="dateFin">Date de Fin</label>
-                            <div class="controls">
-                                <input id="dateFin" name="dateFin" type="date" placeholder="" class="input-large" required>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-4" for="marque">Date de fin</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" required>
 
                                 <?php if (isset($msgError)): ?>
                                     <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
@@ -150,149 +142,95 @@ and open the template in the editor.
                     <div class="col-md-6 col-xs-6">
 
                         <!-- Textarea Description-->
-                        <div class="control-group">
-                            <label class="control-label" for="description">Description</label>
-                            <div class="controls">                     
-                                <textarea id="description" name="description"><?php if(isset($description)){echo $description;} ?></textarea>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Description</label>
+                            </div>
+                            <div class="controls col-md-4">                
+                                <textarea id="description" name="description" class="form-control input-md"><?php if (isset($description)) {echo $description;}?></textarea>
                             </div>
                         </div>
 
                         <!-- Select Basic Motorisation-->
-                        <div class="control-group">
-                            <label class="control-label" for="motorisation">Motorisation</label>
-                            <div class="controls">
-                                                                    
-                                <?php if (isset($motorisation) && $motorisation == "Essence") :?>
-                                    <select id="motorisation" name="motorisation" class="input-large" required>
-                                        <option value="Essence" selected="true">Essence</option>
-                                        <option value="Diesel">Diesel</option>
-                                        <option value="Gaz">Gaz</option>
-                                        <option value="Hybride">Hybride</option>
-                                        <option value="Electrique">Electrique</option>
-                                    </select>
-                                    <?php elseif(isset($motorisation) && $motorisation == "Diesel") :?>
-                                <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel" selected="true">Diesel</option>
-                                    <option value="Gaz">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique">Electrique</option>
-                                </select>
-                                    <?php 
-                                    elseif(isset($motorisation)&& $motorisation == "Gaz") :?>
-                                <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="Gaz" selected="true">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique">Electrique</option>
-                                </select>
-                                    <?php  
-                                    elseif(isset($motorisation)&& $motorisation == "Hybride") :?>
-                                <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="Gaz" selected="true">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique">Electrique</option>
-                                </select>
-                                    <?php 
-                                    elseif(isset($motorisation)&& $motorisation == "Electrique") :?>
-                                <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="Gaz">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique" selected="true">Electrique</option>
-                                </select>
-                                    <?php else : ?>
-                                <select id="motorisation" name="motorisation" class="input-large" required>
-                                    <option value="Essence">Essence</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="Gaz">Gaz</option>
-                                    <option value="Hybride">Hybride</option>
-                                    <option value="Electrique">Electrique</option>
-                                </select>
-                                    <?php endif; ?>
-                                
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Motorisation</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select id="motorisation" name="motorisation" class="form-control input-md" required>
+                                    <option value="Essence" <?= (isset($motorisation) && $motorisation == "Essence") ? 'selected' : '' ?> >Essence</option>
+                                    <option value="Diesel" <?= (isset($motorisation) && $motorisation == "Diesel") ? 'selected' : '' ?> >Diesel</option>
+                                    <option value="Gaz" <?= (isset($motorisation) && $motorisation == "Gaz") ? 'selected' : '' ?> >Gaz</option>
+                                    <option value="Hybride" <?= (isset($motorisation) && $motorisation == "Hybride") ? 'selected' : '' ?> >Hybride</option>
+                                    <option value="Electrique" <?= (isset($motorisation) && $motorisation == "Electrique") ? 'selected' : '' ?> >Electrique</option>
+                                </select>                                
                             </div>
                         </div>
 
                         <!-- Select Basic Kilométrage-->
-                        <div class="control-group">
-                            <label class="control-label" for="kilometrage">Kilométrage</label>
-                            <div class="controls">
-                                <select id="kilometrage" name="kilometrage" class="input-large" required>
-                                    <?php foreach ($kilometrages as $k) : ?>
-                                    <?php if($k['idKilometrage'] == $idKilometrage): ?>
-                                    <option selected="true" value="<?php echo $k['idKilometrage']?>"><?php echo $k['nbrKilometrage'] ?></option>
+                       <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Kilométrages</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select id="kilometrage" name="kilometrage" class="form-control input-md" required>
+                                <?php foreach ($kilometrages as $k) : ?>
+                                    <?php if ($k['idKilometrage'] == $idKilometrage): ?>
+                                            <option selected="true" value="<?php echo $k['idKilometrage'] ?>"><?php echo $k['nbrKilometrage'] ?></option>
                                     <?php else : ?>
-                                        <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                            <option value="<?php echo $k['idKilometrage']; ?>"><?php echo $k['nbrKilometrage']; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Select Basic Type-->
-                        <div class="control-group">
-                            <label class="control-label" for="type">Type</label>
-                            <div class="controls">
-                                
-                                    <?php if(isset($type) && $type == "Utilitaire") :?>
-                                <select id="type" name="type" class="input-large">
-                                    <option value="Utilitaire" selected="true">Utilitaire</option>
-                                    <option value="Voiture">Voiture</option>
-                                    <option value="2 roues">2 roues</option>
-                                </select>                                    
-                                    <?php elseif(isset($type) && $type == "Voiture") :?>                                                                        
-                                <select id="type" name="type" class="input-large">
-                                    <option value="Utilitaire">Utilitaire</option>
-                                    <option value="Voiture" selected="true">Voiture</option>
-                                    <option value="2 roues">2 roues</option>
-                                </select>                                    
-                                    <?php elseif(isset($type) && $type == "2 roues") :?>
-                                <select id="type" name="type" class="input-large">
-                                    <option value="Utilitaire">Utilitaire</option>
-                                    <option value="Voiture">Voiture</option>
-                                    <option value="2 roues" selected="true">2 roues</option>
-                                </select>
-                                    <?php else: ?>
-                                <select id="type" name="type" class="input-large">
-                                    <option value="Utilitaire">Utilitaire</option>
-                                    <option value="Voiture">Voiture</option>
-                                    <option value="2 roues">2 roues</option>
-                                </select>
-                                <?php endif; ?>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Type</label>
+                            </div>
+                            <div class="controls col-md-4">
+                                <select id="type" name="type" class="form-control input-md">
+                                    <option value="Utilitaire" <?= (isset($type) && $type == "Utilitaire") ? 'selected' : '' ?>>Utilitaire</option>
+                                    <option value="Voiture" <?= (isset($type) && $type == "Voiture") ? 'selected' : '' ?>>Voiture</option>
+                                    <option value="2 roues" <?= (isset($type) && $type == "2 roues") ? 'selected' : '' ?>>2 roues</option>
+                                </select>                                     
                             </div>
                         </div>
-                        
+
                         <!-- Input Number Longitude--> 
-                        <div class="control-group">
-                            <label class="control-label" for="longitude">Longitude</label>
-                            <div class="controls">
-                                <input id="longitude" name="longitude" type="number" required="" min="0" step="any" value="<?php if(isset($longitude)){echo $longitude;} ?>">
+                       <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Longitude</label>
                             </div>
-                            
+                            <div class="controls col-md-4">
+                                <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($longitude)) {echo $longitude;}?>">
+                            </div>
+
                         </div>
-                        
+
                         <!-- Input Number Latitude--> 
-                        <div class="control-group">
-                            <label class="control-label" for="latitude">Latitude</label>
-                            <div class="controls">
-                                <input id="latitude" name="latitude" type="number" required="" min="0" step="any" value="<?php if(isset($latitude)){echo $latitude;} ?>">
-                                
+                       <div class="form-group">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Latitude</label>
                             </div>
-                            
+                            <div class="controls col-md-4">
+                                <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($latitude)) {echo $latitude;}?>">
+
+                            </div>
+
                         </div>
-                        
+
                         <!-- File Button Image--> 
                         <div class="control-group">
-                            <label class="control-label" for="image">Image</label>
-                            <div class="controls">
+                            <div class="row">
+                            <label class="control-label col-md-2" for="marque">Image</label>
+                            </div>
+                            <div class="controls col-md-8">
                                 <input id="image" name="image" accept="image/*" class="input-file" type="file" required>
-                                <?php if(isset($msgErrorFile)): ?>
-                                <p class="bg-danger text-danger"><?= $msgErrorFile ?></p>
+                                <?php if (isset($msgErrorFile)): ?>
+                                    <p class="bg-danger text-danger"><?= $msgErrorFile ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -306,11 +244,11 @@ and open the template in the editor.
                             <button id="enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button>
                         </div>
                     </div>
-
+               </div>
                 </fieldset>
             </form>
 
         </div>
-        <?php include 'include/footer.php'; ?>
+<?php include 'include/footer.php'; ?>
     </body>
 </html>

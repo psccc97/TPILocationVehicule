@@ -13,8 +13,8 @@ if (filter_has_var(INPUT_POST, 'rechercher')) {
     $annee = trim(filter_input(INPUT_POST, 'annee', FILTER_SANITIZE_NUMBER_INT));
     $volumeUtile = trim(filter_input(INPUT_POST, 'volume', FILTER_SANITIZE_NUMBER_INT));
     $nbrPlace = trim(filter_input(INPUT_POST, 'nbrPlace', FILTER_SANITIZE_NUMBER_INT));
-    $longitude = trim(filter_input(INPUT_POST, 'longitude', FILTER_SANITIZE_NUMBER_FLOAT));
-    $latitude = trim(filter_input(INPUT_POST, 'latitude', FILTER_SANITIZE_NUMBER_FLOAT));
+    $longitude = trim(filter_input(INPUT_POST, 'longitude', FILTER_VALIDATE_FLOAT));
+    $latitude = trim(filter_input(INPUT_POST, 'latitude', FILTER_VALIDATE_FLOAT));
     $dateDebut = filter_input(INPUT_POST, "dateDebut", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
     $dateFin = filter_input(INPUT_POST, "dateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
 
