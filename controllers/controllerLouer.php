@@ -10,19 +10,19 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
     //Vérification : on reçoit bien les informations
     $type = trim(filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING));
     $description = trim(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
-    $annee = trim(filter_input(INPUT_POST, 'annee', FILTER_SANITIZE_NUMBER_INT));
+    $annee = trim(filter_input(INPUT_POST, 'annee', FILTER_VALIDATE_INT));
     $categorie = trim(filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_STRING));
-    $nbrPlace = trim(filter_input(INPUT_POST, 'nbrPlace', FILTER_SANITIZE_NUMBER_INT));
-    $volumeUtile = trim(filter_input(INPUT_POST, 'volume', FILTER_SANITIZE_NUMBER_INT));
+    $nbrPlace = trim(filter_input(INPUT_POST, 'nbrPlace', FILTER_VALIDATE_INT));
+    $volumeUtile = trim(filter_input(INPUT_POST, 'volume', FILTER_VALIDATE_INT));
     $motorisation = trim(filter_input(INPUT_POST, 'motorisation', FILTER_SANITIZE_STRING));
-    $idMarque = trim(filter_input(INPUT_POST, 'marque', FILTER_SANITIZE_NUMBER_INT));
-    $idModele = trim(filter_input(INPUT_POST, 'modele', FILTER_SANITIZE_NUMBER_INT));
-    $idKilometrage = trim(filter_input(INPUT_POST, 'kilometrage', FILTER_SANITIZE_NUMBER_INT));
+    $idMarque = trim(filter_input(INPUT_POST, 'marque', FILTER_VALIDATE_INT));
+    $idModele = trim(filter_input(INPUT_POST, 'modele', FILTER_VALIDATE_INT));
+    $idKilometrage = trim(filter_input(INPUT_POST, 'kilometrage', FILTER_VALIDATE_INT));
     $idUtilisateur = $_SESSION['idUtilisateur'];
     $dateDebut = filter_input(INPUT_POST, "dateDebut", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
     $dateFin = filter_input(INPUT_POST, "dateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
-    $longitude = trim(filter_input(INPUT_POST, 'longitude', FILTER_SANITIZE_NUMBER_FLOAT));
-    $latitude = trim(filter_input(INPUT_POST, 'latitude', FILTER_SANITIZE_NUMBER_FLOAT));
+    $longitude = filter_input(INPUT_POST, 'longitude', FILTER_VALIDATE_FLOAT);    
+    $latitude = filter_input(INPUT_POST, 'latitude', FILTER_VALIDATE_FLOAT);
     
     //Nombre de place//
     $msgErrorNbrPlace ="";

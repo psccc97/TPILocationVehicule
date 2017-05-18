@@ -122,14 +122,14 @@ session_start();
                     <div class="form-group">
                         <label class="control-label" for="longitude">Votre longitude :</label>
                         <div class="controls">
-                            <input id="longitude" type="number" name="longitude" class="form-control" min="0">                            
+                            <input id="longitude" type="number" name="longitude" class="form-control" min="0" step="any">                            
                         </div>
                     </div>
                     <!-- Latitude -->
                     <div class="form-group">
                         <label class="control-label" for="latitude">Votre latitude :</label>
                         <div class="controls">
-                            <input id="latitude" type="number" name="latitude" class="form-control" min="0">                            
+                            <input id="latitude" type="number" name="latitude" class="form-control" min="0" step="any">                            
                         </div>
                     </div>
 
@@ -137,7 +137,7 @@ session_start();
                     <div class="form-group">
                         <label class="control-label" for="dateDebut">Date de début</label>
                         <div class="controls">
-                            <input id="dateDebut" name="dateDebut" type="date" class="form-control" required min="<?php echo date("Y-m-d"); ?>">
+                            <input id="dateDebut" name="dateDebut" type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>">
 
                         </div>
                     </div>
@@ -146,7 +146,7 @@ session_start();
                     <div class="form-group">
                         <label class="control-label" for="dateFin">Date de Fin</label>
                         <div class="controls">
-                            <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control" required>
+                            <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control">
 
                             <?php if (isset($msgError)): ?>
                                 <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
@@ -157,6 +157,29 @@ session_start();
 
                 <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary">                                                   
             </form>
+            <?php if (isset($vehiculesFiltrer)) : ?>
+                <?php foreach ($vehiculesFiltrer as $vf) : ?>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <h3><?php echo $vf['nomMarque'] ?> <?php echo $vf['nomModele'] ?></h3>
+                            <img src="img/<?php echo $vf['Image'] ?>" class="img-responsive" style="width: 100%; height: auto; display: block;"s>
+                            <div class="caption">       
+                                <p>Kilométrages : <?php echo $vf['nbrKilometrage'] ?></p>
+                                <p>Année : <?php echo $vf['Annee'] ?></p>
+                                <p>Description :<?php echo $vf['Description'] ?></p>
+                                <p>Disponibilité :<?php echo $vf['dateDebut'] ?> ----> <?php echo $vf['dateFin'] ?></p>
+                                <?php if (isset($resultatDistance)) : ?>
+                                    <p>Distance : <?= $resultatDistance[$vf['idVehicule']] ?></p>
+                                <?php endif; ?>
+                                <p>
+                                    <a href="details-<?php echo $vf['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 
+                                    <a href="#" class="btn btn-default" role="button">Réserver</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
             <?php foreach ($vehicules as $vehicule): ?>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
@@ -167,7 +190,9 @@ session_start();
                             <p>Année : <?php echo $vehicule['Annee'] ?></p>
                             <p>Description :<?php echo $vehicule['Description'] ?></p>
                             <p>Disponibilité :<?php echo $vehicule['dateDebut'] ?> ----> <?php echo $vehicule['dateFin'] ?></p>
-
+                            <?php if (isset($resultatDistance)) : ?>
+                                <p>Distance : <?= $resultatDistance[$vehicule['idVehicule']] ?></p>
+                            <?php endif; ?>
                             <p></p>
                             <p>
                                 <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 
@@ -177,6 +202,7 @@ session_start();
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>        
 </body>

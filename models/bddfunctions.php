@@ -147,58 +147,86 @@ function recupereVehiculesSelonIdUtilisateur($idUtilisateur) {
     return $reslt;
 }
 
-function recupereVehiculesSelonRecherche($idMarque = null, $idModele = null, $idKilometrage = null, $type = null, $categorie = null, $motorisation = null, $annee = null, $volumeUtile = null, $nbrPlace = null, $dateDebut = null, $dateFin = null){
+function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $type, $categorie, $motorisation, $annee, $volumeUtile, $nbrPlace, $dateDebut, $dateFin){
     $bdd = connexionBdd();
-    $sql = 'SELECT * FROM vehicules AS v, disponibilites AS d'.
-            'WHERE v.idVehicule = d.idVehicule';
-    if($idMarque != NULL){
+    $sql = "SELECT * FROM vehicules AS v, disponibilites AS d, modeles AS mo, marques AS m, kilometrages AS k ".
+           "WHERE v.idMarque = m.idMarque " .
+            "AND v.idVehicule = d.idVehicule " .
+            "AND v.idModele = mo.idModele " .
+            "AND v.idKilometrage = k.idKilometrage";
+    if($idMarque !=""){
         $sql .= " AND v.idMarque =:idMarque";
     }
-    if($idModele != NULL){
+    if($idModele !=""){
         $sql .= " AND v.idModele = :idModele";
     }
-    if($idKilometrage != NULL){
+    if($idKilometrage !=""){
         $sql .= " AND v.idKilometrage = :idKilometrage";
     }
-    if($categorie != NULL){
+    if($categorie !=""){
         $sql .= " AND v.Categorie = :categorie";
     }
-    if($motorisation != NULL){
+    if($motorisation !=""){
         $sql .= " AND v.Motorisation = :motorisation";
     }
-    if($annee != NULL){
+    if($annee !=""){
         $sql .= " AND v.Annee = :annee";
     }
-    if($volumeUtile != NULL){
+    if($volumeUtile !=""){
         $sql .= " AND v.volumeUtile = :volumeUtile";
     }
-    if($nbrPlace != NULL){
+    if($nbrPlace !=""){
         $sql .= " AND v.nbrPlace = :nbrPlace";
     }
-    if($dateDebut != NULL){
+    if($dateDebut !=""){
         $sql .= " AND d.dateDebut = :dateDebut";
     }
-    if($dateFin != NULL){
+    if($dateFin !=""){
         $sql .= " AND d.dateFin = :dateFin";
     }
-    if($type != NULL){
+    if($type !=""){
         $sql .= " AND v.Type = :type";
     }
     
     $requete = $bdd->prepare($sql);
     
-    if($idMarque != NULL){
+    if($idMarque !=""){
         $requete->bindParam(':idMarque', $idMarque);
     }
-    if($idModele != NULL){
+    if($idModele !=""){
         $requete->bindParam(':idModele', $idModele);
     }
-    if($idKilometrage != NULL){
+    if($idKilometrage !=""){
         $requete->bindParam(':idKilometrage', $idKilometrage);
     }
-    if($categorie != NULL){
+    if($categorie !=""){
         $requete->bindParam(':categorie', $categorie);
     }
+    if($motorisation !=""){
+        $requete->bindParam(':motorisation', $motorisation);
+    }
+    if($annee !=""){
+        $requete->bindParam(':annee', $annee);
+    }
+    if($volumeUtile !=""){
+        $requete->bindParam(':volumeUtile', $volumeUtile);
+    }
+    if($nbrPlace !=""){
+        $requete->bindParam(':nbrPlace', $nbrPlace);
+    }
+    if($dateDebut !=""){
+        $requete->bindParam(':dateDebut', $dateDebut);
+    }
+    if($dateFin !=""){
+        $requete->bindParam(':dateFin', $dateFin);
+    }
+    if($type !=""){
+        $requete->bindParam(':type', $type);
+    }
+    
+    $requete->execute();
+    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+    return $reslt;
 }
 
 //FONCTION D'AJOUT//////////////////////////////////////////////////////////////////////////
