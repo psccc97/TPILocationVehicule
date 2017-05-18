@@ -22,5 +22,5 @@ if (filter_has_var(INPUT_POST, 'connexion')) {
         $msgError = "Votre prénom ou mot de passe est incorect !!";
     }
 }
-include 'views/connexion.php';
+include 'views/viewConnexion.php';
 

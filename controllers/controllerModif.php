@@ -4,6 +4,7 @@ require_once 'models/bddfunctions.php';
 
 session_start();
 
+//SI ON PRESSE LE BOUTON 'MODIFIER'//
 if (filter_has_var(INPUT_POST, 'modifier')) {
     //Vérification des données dans les champs
     $type = trim(filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING));
@@ -69,6 +70,11 @@ if (filter_has_var(INPUT_POST, 'modifier')) {
             header('location:mesvehiculesenlocation.html');
         }
     }
+}
+
+//SI ON PRESSE LE BOUTON ANNULER//
+if(filter_has_var(INPUT_POST, 'annuler')){
+    header('location:mesvehiculesenlocation.html');
 }
 
 //Vérification de connexion

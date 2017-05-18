@@ -87,7 +87,7 @@
                         <div class="control-group">
                             <label class="control-label" for="nbrPlace">Nombre de place</label>
                             <div class="controls">
-                                <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="input-large" max="9" min="0" value="<?php echo $vehicule['nbrPlace']?>">
+                                <input id="nbrPalce" name="nbrPlace" type="number" placeholder="" class="input-large" max="9" min="0" value="<?php echo $vehicule['nbrPlace']?>">
 
                             </div>
                         </div>                        
@@ -96,7 +96,7 @@
                         <div class="control-group">
                             <label class="control-label" for="volume">Volume utile</label>
                             <div class="controls">
-                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" value="<?php echo $vehicule['volumeUtile'] ?>"> m3
+                                <input id="volume" name="volume" type="number" placeholder="" class="input-large" min="0" value="<?php echo $vehicule['volumeUtile'] ?>"> m3
 
                             </div>
                         </div>
@@ -210,7 +210,26 @@
                                 </select>
                             </div>
                         </div>
-
+                        
+                        <!-- Input Number Longitude--> 
+                        <div class="control-group">
+                            <label class="control-label" for="longitude">Longitude</label>
+                            <div class="controls">
+                                <input id="longitude" name="longitude" type="number" required="" min="0" step="any" value="<?= $vehicule['Longitude'] ?>">
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Input Number Latitude--> 
+                        <div class="control-group">
+                            <label class="control-label" for="latitude">Latitude</label>
+                            <div class="controls">
+                                <input id="latitude" name="latitude" type="number" required="" min="0" step="any" value="<?php echo $vehicule['Latitude'] ?>">
+                                
+                            </div>
+                            
+                        </div>
+                        
                         <!-- File Button Image--> 
                         <div class="control-group">
                             <label class="control-label" for="image">Image</label>

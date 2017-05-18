@@ -240,7 +240,7 @@ function supprimerVehicule($idVehicule) {
 }
 
 //FONCTION DE MODIFICATION DE DONNEES/////////////////////////////////////////////////////////////////////////////////////
-function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $idMarque, $idModele, $idKilometrage, $dateDebut, $dateFin, $longitude, $latitude) {
+function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image = "", $idMarque, $idModele, $idKilometrage, $dateDebut, $dateFin, $longitude, $latitude) {
     $bdd = connexionBdd();
     if ($image == "") {
         $sql = "UPDATE vehicules, disponibilites " .
@@ -263,6 +263,11 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
         $requete->bindParam(':latitude', $latitude);
 
         $reslt = $requete->execute();
+        if ($reslt) {
+            return true;
+        } else {
+            return FALSE;
+        }
     } else {
         $sql = "UPDATE vehicules, disponibilites " .
                 "SET Type=:type, Description=:description, Annee=:annee, Categorie=:categorie, nbrPlace=:nbrPlace, volumeUtile=:volumeUtile, Motorisation=:motorisation, Image=:image, idMarque=:idMarque, idModele=:idModele, idKilometrage=:idKilometrage, dateDebut=:dateDebut, dateFin=:dateFin, Longitude=:longitude Latitude=:latitude " .
@@ -284,13 +289,12 @@ function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nb
         $requete->bindParam(':longitude', $longitude);
         $requete->bindParam(':latitude', $latitude);
 
+
         $reslt = $requete->execute();
-    }
-
-
-    if ($reslt) {
-        return true;
-    } else {
-        return FALSE;
+        if ($reslt) {
+            return true;
+        } else {
+            return FALSE;
+        }
     }
 }
