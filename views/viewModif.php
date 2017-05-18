@@ -11,11 +11,7 @@
         <div class="container">
             <?php include 'include/navBar.php'; ?>
             <form class="form-horizontal" action="modificaton.html" method="post" enctype="multipart/form-data">
-                <fieldset>
-                    
-                    <?php 
-                        var_dump($vehicule);
-                    ?>
+                <fieldset>                  
                     <!-- Form Name -->
                     <legend>Modifier un véhicule</legend>
 

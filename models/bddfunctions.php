@@ -34,7 +34,8 @@ function verifIdentificationUtilisateur($prenom, $mdp) {
  * J'utilise cette fonction pour afficher les données dans la page d'accueil
  * @return type
  */
-function recupereVehicules() {
+
+/*function recupereVehicules() {
     $bdd = connexionBdd();
     $sql = "SELECT *" .
             "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
@@ -47,6 +48,7 @@ function recupereVehicules() {
     $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
     return $reslt;
 }
+*/
 
 /**
  * Cette fonction récupère les données d'un véhicule selon son id
@@ -132,12 +134,12 @@ function recupereNomMarqueSelonIdMarque($idMarque) {
 }
 
 /**
- * Cette fonction récupere les données d'un véhicule selon un l'id d'un utilisateur
- * Je l'utilise pour afficher les véhicules qu'a mis un utilisateur en location
+ * Cette fonction récupère les données de tout les véhicules mais si il y a le paramètre 'idUtilisateur' alors cette fonction récupère les véhicules d'un seul utilisateur
+ * Je l'utilise pour afficher les véhicules à la page d'accueil et pour voir les véhicules qu'a mit en location un utilisateur
  * @param type $idUtilisateur
  * @return type
  */
-function recupereVehiculesSelonIdUtilisateur($idUtilisateur = null) {
+function recupereVehicules($idUtilisateur = null) {
     $bdd = connexionBdd();
     $sql = 'SELECT * '
             . 'FROM `vehicules` AS v, modeles AS mo, marques AS m, kilometrages AS k, disponibilites AS d '
@@ -156,6 +158,21 @@ function recupereVehiculesSelonIdUtilisateur($idUtilisateur = null) {
     return $reslt;
 }
 
+/**
+ * 
+ * @param type $idMarque
+ * @param type $idModele
+ * @param type $idKilometrage
+ * @param type $type
+ * @param type $categorie
+ * @param type $motorisation
+ * @param type $annee
+ * @param type $volumeUtile
+ * @param type $nbrPlace
+ * @param type $dateDebut
+ * @param type $dateFin
+ * @return type
+ */
 function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $type, $categorie, $motorisation, $annee, $volumeUtile, $nbrPlace, $dateDebut, $dateFin) {
     $bdd = connexionBdd();
     $sql = "SELECT * FROM vehicules AS v, disponibilites AS d, modeles AS mo, marques AS m, kilometrages AS k " .
