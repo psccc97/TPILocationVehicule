@@ -1,9 +1,6 @@
 <?php
 
-if(session_status() !== PHP_SESSION_ACTIVE)
-{
-    session_start();
-}
+
 const MESSAGEFLASH = 'MessageFlash';
 
 function SetFlashMessage($msg)

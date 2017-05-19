@@ -99,12 +99,13 @@
                         </div>
 
                         <!-- Date input Date début-->
+                        <?php foreach ($dispos as $d) :?>
                         <div class="form-group">
                             <div class="row">
                             <label class="control-label col-md-4" for="dateDebut">Date de début</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="dateDebut" value="<?php echo $vehicule['dateDebut'] ?>" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo $vehicule['dateDebut'] ?>">
+                                <input id="dateDebut" value="<?php echo $d['dateDebut'] ?>" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo $d['dateDebut'] ?>">
 
                             </div>
                         </div>
@@ -115,13 +116,14 @@
                             <label class="control-label col-md-4" for="dateFin">Date de fin</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="dateFin" name="dateFin" type="date" value="<?php echo $vehicule['dateFin']?>" placeholder="" class="form-control input-md" required>
+                                <input id="dateFin" name="dateFin" type="date" value="<?php echo $d['dateFin']?>" placeholder="" class="form-control input-md" required>
 
                                 <?php if (isset($msgError)): ?>
                                     <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="col-md-6 col-xs-6">

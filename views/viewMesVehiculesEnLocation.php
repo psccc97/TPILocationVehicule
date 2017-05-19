@@ -53,11 +53,12 @@ and open the template in the editor.
                                         <td>Description </td>
                                         <td><?php echo $vehicule['Description']; ?></td>
                                     </tr>
+                                    <?php foreach ($dispos as $d) :?>
                                     <tr>
                                         <td>Disponibilité </td>
-                                        <td><?php echo $vehicule['dateDebut'] ?> ----> <?php echo $vehicule['dateFin'] ?></td>
+                                        <td><?php echo $d['dateDebut'] ?> ----> <?php echo $d['dateFin'] ?></td>
                                     </tr>
-                                    <?php  ?>
+                                    <?php endforeach; ?>
                                     <tr>
                                         
                                     </tr>

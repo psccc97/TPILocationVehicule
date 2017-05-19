@@ -55,10 +55,12 @@ and open the template in the editor.
                                     <td>Description </td>
                                     <td><?php echo $details['Description']; ?></td>
                                 </tr>
+                                <?php foreach ($dispos as $dispo): ?>
                                 <tr>
                                     <td>Disponibilité </td>
-                                    <td><?php echo $details['dateDebut']?> ----> <?php echo $details['dateFin'] ?></td>
+                                    <td><?php echo $dispo['dateDebut']?> ----> <?php echo $dispo['dateFin'] ?></td>
                                 </tr>
+                                <?php endforeach; ?>
                             </table>
                         </div>
                     </div>

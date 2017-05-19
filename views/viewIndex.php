@@ -189,10 +189,22 @@ session_start();
                             <p>Kilométrages : <?php echo $vehicule['nbrKilometrage'] ?></p>
                             <p>Année : <?php echo $vehicule['Annee'] ?></p>
                             <p>Description :<?php echo $vehicule['Description'] ?></p>
-                            <p>Disponibilité :<?php echo $vehicule['dateDebut'] ?> ----> <?php echo $vehicule['dateFin'] ?></p>
+                            <?php /*foreach ($dispos as $d) :*/?>
+                            <p>Disponibilité :
+                            <ul>
+                                <?php
+                                        foreach ($vehicule['dispo'] as $dispo)
+                                        {
+                                            echo '<li>'.$dispo['dateDebut']. " ----> " .$dispo['dateFin'].'</li>';
+                                        }
+                                ?>
+                                
+                            </ul>
+                            </p>
+                            <?php /*endforeach;*/ ?>
                             <?php if (isset($resultatDistance)) : ?>
                                 <p>Distance : <?= $resultatDistance[$vehicule['idVehicule']] ?></p>
-                            <?php endif; ?>
+                            <?php endif;?>
                             <p></p>
                             <p>
                                 <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a>                                

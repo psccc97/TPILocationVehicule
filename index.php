@@ -47,4 +47,7 @@ if (empty($action)) {
         case 'reserver':
             require_once 'controlers/controlerReserver.php';
             break;
+        case 'mesvehiculesreserver':
+            require_once 'controlers/controlerMesVehiculesReserve.php';
+            break;
     }

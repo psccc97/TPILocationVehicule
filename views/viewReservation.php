@@ -67,7 +67,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6">
-                        <form class="form-horizontal" method="post"  action="controlerReserver.html">
+                        <form class="form-horizontal" method="post"  action="reserver.html">
                         
                         <!-- Date input Date début-->
                         <div class="form-group">
@@ -98,7 +98,7 @@ and open the template in the editor.
                         </div>
                         <input type="hidden" name="idVehicule" value="<?= $vehicule['idVehicule'] ?>">
                         <div class="form-group">
-                            <div class="cold-md-4">
+                            <div class="cold-md-4">                                
                                 <button id="reserver" class="btn btn-default" name="reserver">Réserver</button>
                             </div>
                         </div>

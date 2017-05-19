@@ -6,12 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <?php include 'include/header.php'; ?>
-    <body>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>    
         <div class="container">
-            <?php include 'include/navBar.php'; ?>
-            <legend>Mes véhicules en location</legend>
-            <?php foreach ($vehicules as $vehicule) : ?>
-                <div class="thumbnail">
+          <?php include 'include/navBar.php'; ?>
+            <legend>Mes véhicules réservés</legend>
+            <div class="thumbnail">
                     <div class="row">
                         <div class="col-sm-5 col-xs-5">
                             <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>
@@ -53,20 +56,30 @@ and open the template in the editor.
                                         <td>Description </td>
                                         <td><?php echo $vehicule['Description']; ?></td>
                                     </tr>
+                                    <?php foreach ($dispos as $d) :?>
+                                    <tr>
+                                        <td>Disponibilité </td>
+                                        <td><?php echo $d['dateDebut'] ?> ----> <?php echo $d['dateFin'] ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                    <tr>
+                                        
+                                    </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="col-sm-3 col-xs-3">
                             <a href="supprimer-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-danger">Supprimer</a><br/>
                             <br/>
-                            <a href="modificaton-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-success">Modifier</a>
+                            <a href="modificaton-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-success">Modifier</a><br/>
+                            <?php if(!empty($msgErrorSuppression)): ?>
+                            <br/>
+                            <p><?= $msgErrorSuppression; ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>      
                 </div>
-            <?php endforeach; ?>
         </div>
-    </div>
-</div>
-</body>
-<?php include 'include/footer.php'; ?>
+        <?php include 'include/footer.php'; ?>
+    </body>
 </html>

@@ -3,41 +3,42 @@
 require_once 'models/bddfunctions.php';
 session_start();
 
-if(filter_has_var(INPUT_POST, 'reserver')){
-    
+if (filter_has_var(INPUT_POST, 'reserver')) {
+
     //Vérification : on reçoit bien les informations
     $idVehicule = trim(filter_input(INPUT_POST, 'idVehicule', FILTER_VALIDATE_INT));
     $dateDebut = filter_input(INPUT_POST, "dateDebut", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
     $dateFin = filter_input(INPUT_POST, "dateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
     $ancienneDateDebut = filter_input(INPUT_POST, "acienneDateDebut", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
-    $ancienneDateFin = filter_input(INPUT_POST, "acienneDateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
-    
-    if($dateDebut == $ancienneDateDebut){
+    $ancienneDateFin = filter_input(INPUT_POST, "ancienneDateFin", FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/\d{4}-[01][0-9]-[0123][0-9]/']]);
+
+    if ($dateDebut == $ancienneDateDebut) {
         $dateDebut = "";
         $ancienneDateDebut == "";
     }
-    if($dateFin == $ancienneDateFin){
+    if ($dateFin == $ancienneDateFin) {
         $dateFin = "";
         $ancienneDateFin = "";
     }
-    if($dateDebut < date("Y-m-d")){
+    if ($dateDebut < date("Y-m-d")) {
         $msgErrorDateDebut = "Date de début trop petite";
     }
-    
-    if($dateFin< $dateDebut)
-    {
+
+    if ($dateFin < $dateDebut) {
         $msgError = "La date de fin ne peut pas être plus pettite";
     }
-    if()
-    resevationEtAjoutNouvelDispo($ancienneDateDebut, $dateDebut, $dateFin, $ancienneDateFin, $idVehicule);
-    header('location:accueil.html');
+    if (empty($msgError) && empty($msgErrorDateDebut)) {
+        resevationEtAjoutNouvelDispo($ancienneDateDebut, $dateDebut, $dateFin, $ancienneDateFin, $idVehicule, $_SESSION['idUtilisateur']);
+        header('location:accueil.html');
+        exit;
+    }
 }
 
 
-if(isset($_SESSION['prenom'])){
+if (isset($_SESSION['prenom'])) {
     $idVehicule = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
     $vehicule = recupereVehicleSelonId($idVehicule);
-}  else {
+} else {
     header('location:accueil.html');
     exit;
 }

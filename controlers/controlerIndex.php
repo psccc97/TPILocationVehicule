@@ -34,6 +34,8 @@ if (filter_has_var(INPUT_POST, 'rechercher')) {
 }
 
 $vehicules = recupereVehicules();
+
+
 $marques = recupereMarques();
 $modeles = recupereModeles();
 $kilometrages = recupereKilometrages();

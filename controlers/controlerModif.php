@@ -81,6 +81,7 @@ if(filter_has_var(INPUT_POST, 'annuler')){
 if (isset($_SESSION['prenom'])) {
     $idVehicule = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
     $vehicule = recupereVehicleSelonId($idVehicule);
+    $dispos = recupereDispoSelonIdVehicule($vehicule['idVehicule']);
     $kilometrages = recupereKilometrages();
     $marques = recupereMarques();
     $modeles = recupereModeles();
