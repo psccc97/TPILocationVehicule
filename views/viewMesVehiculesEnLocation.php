@@ -67,7 +67,11 @@ and open the template in the editor.
                         <div class="col-sm-3 col-xs-3">
                             <a href="supprimer-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-danger">Supprimer</a><br/>
                             <br/>
-                            <a href="modificaton-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-success">Modifier</a>
+                            <a href="modificaton-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-success">Modifier</a><br/>
+                            <?php if(!empty($msgErrorSuppression)): ?>
+                            <br/>
+                            <p><?= $msgErrorSuppression; ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>      
                 </div>

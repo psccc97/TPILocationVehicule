@@ -34,21 +34,20 @@ function verifIdentificationUtilisateur($prenom, $mdp) {
  * J'utilise cette fonction pour afficher les données dans la page d'accueil
  * @return type
  */
-
-/*function recupereVehicules() {
-    $bdd = connexionBdd();
-    $sql = "SELECT *" .
-            "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
-            "WHERE v.idMarque = m.idMarque " .
-            "AND v.idVehicule = d.idVehicule " .
-            "AND v.idModele = mo.idModele " .
-            "AND v.idKilometrage = k.idKilometrage";
-    $requete = $bdd->prepare($sql);
-    $requete->execute();
-    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
-    return $reslt;
-}
-*/
+/* function recupereVehicules() {
+  $bdd = connexionBdd();
+  $sql = "SELECT *" .
+  "FROM vehicules AS v, marques AS m, modeles AS mo, kilometrages AS k, disponibilites AS d " .
+  "WHERE v.idMarque = m.idMarque " .
+  "AND v.idVehicule = d.idVehicule " .
+  "AND v.idModele = mo.idModele " .
+  "AND v.idKilometrage = k.idKilometrage";
+  $requete = $bdd->prepare($sql);
+  $requete->execute();
+  $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+  return $reslt;
+  }
+ */
 
 /**
  * Cette fonction récupère les données d'un véhicule selon son id
@@ -70,6 +69,23 @@ function recupereVehicleSelonId($idVehicule) {
     $requete->execute();
     $reslt = $requete->fetch(PDO::FETCH_ASSOC);
     return $reslt;
+}
+
+function recupereLocationSelonIdVehicule($idVehicule){
+    $bdd = connexionBdd();
+    $sql = "SELECT *"
+            . "FROM location"
+            . "WHERE idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(":idVehicule", $idVehicule);
+    $requete->execute();
+    $reslt = $requete->fetch(PDO::FETCH_ASSOC);
+    $reslt;
+    if(!empty($reslt)){
+        return true;
+    }else{
+        return FALSE;
+    }
 }
 
 /**
@@ -330,8 +346,80 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     $requete->execute();
 }
 
-function reserverVehicule() {
+function differenceJour($dateDebutDispo, $dateFinDispo, $dateDebutLocation, $dateFinLocation, $idVehicule) {
     $bdd = connexionBdd();
+
+    $sql = "SELECT DATEDIFF(l.:dateDebutLocation,d.:dateDebutDispo) AS nouvelDispo1, DATEDIFF(d.dateFinDispo, l.dateFinLocation) AS nouvelDispo2 
+            FROM disponibilites AS d, location AS l
+            WHERE d.idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':dateDebutLocation', $dateDebutLocation);
+    $requete->bindParam(':dateDebutDispo', $dateDebutDispo);
+    $requete->bindParam(':dateFinDispo', $dateFinDispo);
+    $requete->bindParam(':dateFinLocation', $dateFinLocation);
+    $requete->bindParam(':idVehicule', $idVehicule);
+    $requete->execute();
+    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+    return $reslt;
+}
+
+function  nouvelsDateDispo($jourDebutAjout, $jourFinSoustraire){
+    $bdd = connexionBdd();
+    $sql = "SELECT ADDDATE(`dateDebut`, INTERVAL :jourDebutAjout DAY) AS newDateDebut, 
+             SUBDATE(`dateFin`, INTERVAL :jourFinSoustraire DAY) AS newDateFin
+             FROM disponibilites
+             WHERE idVehicule = 4";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':jourDebutAjout', $jourDebutAjout);
+    $requete->bindParam(':jourFinSoustraire', $jourFinSoustraire);
+    $requete->execute();
+    $reslt = $requete->fetchAll(PDO::FETCH_ASSOC);
+    return $reslt;
+    
+}
+
+function resevationEtAjoutNouvelDispo($ancienneDateDebut, $nouvelDateDebut, $nouvelDateFin, $ancienneDateFin, $idVehicule)
+{
+    $bdd= connexionBdd();
+    $sql = "DELETE FROM disponibilites WHERE idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':idVehicule', $idVehicule);
+    $requete->execute();
+    
+    if($ancienneDateDebut != "" && $nouvelDateDebut != "" && $nouvelDateFin != "" && $acienneDateFin != ""){
+    $sql = "INSERT INTO disponibilites (dateDebut, dateFin, idVehicule) "
+            . "VALUES (:ancienneDateDebut, :nouvelDateDebut, :idVehicule),"
+            . " (:nouvelDateFin, :ancienneDateFin, :idVehicule)";
+    }
+    if($ancienneDateDebut == "" && $nouvelDateDebut == ""){
+        $sql = "INSERT INTO disponibilites (dateDebut, dateFin, idVehicule) "
+            . "VALUES (:nouvelDateFin, :ancienneDateFin, :idVehicule)";
+    }
+    if($nouvelDateFin == "" && $acienneDateFin == ""){
+        $sql = "INSERT INTO disponibilites (dateDebut, dateFin, idVehicule) "
+            . "VALUES (:ancienneDateDebut, :nouvelDateDebut, :idVehicule)";
+    }
+    
+    $requete = $bdd->prepare($sql);
+    
+    if($ancienneDateDebut != "" && $nouvelDateDebut != "" && $nouvelDateFin != "" && $acienneDateFin != ""){
+        $requete->bindParam(':ancienneDateDebut', $acienneDateDebut);
+        $requete->bindParam(':nouvelDateDebut', $nouvelDateDebut);
+        $requete->bindParam(':nouvelDateFin', $nouvelDateFin);
+        $requete->bindParam(':ancienneDateFin', $ancienneDateFin);
+    }
+    if($ancienneDateDebut == "" && $nouvelDateDebut == ""){
+        $requete->bindParam(':nouvelDateFin', $nouvelDateFin);
+        $requete->bindParam('ancienneDateFin', $ancienneDateFin);
+    }
+    if($nouvelDateFin == "" && $acienneDateFin == ""){
+        $requete->bindParam(':ancienneDateDebut', $ancienneDateDebut);
+        $requete->bindParam(':nouvelDateDebut', $nouvelDateDebut);
+    }
+    
+    $requete->bindParam(':idVehicule', $idVehicule);
+    $reslt = $requete->execute();
+    return $reslt;
 }
 
 //FONCTION DE SUPPRESSION DE DONNEES/////////////////////////////////////////////////////////////////////////////////////

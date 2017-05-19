@@ -67,13 +67,16 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6">
+                        <form class="form-horizontal" method="post"  action="controlerReserver.html">
+                        
+                        <!-- Date input Date début-->
                         <div class="form-group">
                             <div class="row">
-                                <label class="control-label col-md-4" for="marque">Date de dàbut</label>
+                                <label class="control-label col-md-4" for="marque">Date de début</label>
                             </div>
                             <div class="controls col-md-4">
+                                <input type="hidden" name="acienneDateDebut" value="<?= $vehicule['dateDebut'] ?>">
                                 <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
-
                             </div>
                         </div>
 
@@ -83,16 +86,26 @@ and open the template in the editor.
                                 <label class="control-label col-md-4" for="marque">Date de fin</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" required>
-
+                                <input type="hidden" name="ancienneDateFin" value="<?= $vehicule['dateFin'] ?>">
+                                <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" max="<?= $vehicule['dateFin'] ?>" required>
                                 <?php if (isset($msgError)): ?>
                                     <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                                 <?php endif; ?>
+                                <?php if (isset($msgErrorDateDebut)): ?>
+                                    <p class="bg-danger text-danger"><?php echo $msgErrorDateDebut; ?></p>
+                                <?php endif; ?>    
                             </div>
-                        </div>                    
+                        </div>
+                        <input type="hidden" name="idVehicule" value="<?= $vehicule['idVehicule'] ?>">
+                        <div class="form-group">
+                            <div class="cold-md-4">
+                                <button id="reserver" class="btn btn-default" name="reserver">Réserver</button>
+                            </div>
+                        </div>
+                        </form>
                     </div>
                 </div>
-            </div>>
+            </div>
         </div>
         <?php include 'include/footer.php'; ?>
     </body>
