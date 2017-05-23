@@ -15,7 +15,7 @@
             <!-- Navigation -->
             <?php include 'include/navBar.php'; ?>
             <legend>Accueil</legend>
-            <form class="form-inline" action="#" method="post">
+            <form class="form-inline" action="accueil.html" method="post">
 
                 <div class="row">
                     <!-- Text input Marque-->
@@ -112,7 +112,7 @@
                     <div class="form-group">
                         <label class="controls-label" for="nbrPlace">Nombre de place</label>
                         <div class="controls">
-                            <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="form-control" max="9" min="0">
+                            <input id="nbrPalce" name="nbrPlace" type="number" placeholder="" class="form-control" max="9" min="0">
                         </div>
                     </div>
                 </div>

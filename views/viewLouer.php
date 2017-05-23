@@ -115,7 +115,7 @@ and open the template in the editor.
                         <!-- Date input Date début-->
                         <div class="form-group">
                             <div class="row">
-                                <label class="control-label col-md-4" for="dateDebut">Date de dàbut*</label>
+                                <label class="control-label col-md-4" for="dateDebut">Date de début*</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">

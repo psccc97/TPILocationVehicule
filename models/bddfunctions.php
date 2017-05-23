@@ -307,7 +307,7 @@ function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $
         $requete->bindParam(':volumeUtile', $volumeUtile);
     }
     if ($nbrPlace != "") {
-        $requete->bindParam(':nbrPlace', $nbrPlace);
+        $requete->bindParam(':nbrPlace', $nbrPlace, PDO::PARAM_INT);
     }
     if ($dateDebut != "" && $dateFin != "") {
         $requete->bindParam(':dateDebut', $dateDebut);
