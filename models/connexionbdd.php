@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Fichier : modele connexionbdd.php
+ * Auteur: Pascucci Lino
+ * Date: 10.05.2017
+ * Description : contient la fonction de connexion à la bdd
+ */
+
 
 /**
  * C'est une fonction qui permet de se connecter à la base de donnée

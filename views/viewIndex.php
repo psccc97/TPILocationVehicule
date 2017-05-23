@@ -7,7 +7,6 @@
  * Description :Page principale du site
  */
 
-session_start();
 ?>
 <html>
     <?php include 'include/header.php'; ?>
@@ -157,8 +156,10 @@ session_start();
 
                 <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary">                                                   
             </form>
+
+
             <?php if (isset($vehiculesFiltrer)) : ?>
-                <?php foreach ($vehiculesFiltrer as $vf) : ?>
+                <?php foreach ($vehiculesFiltrer as $vf) : ?>            
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <h3><?php echo $vf['nomMarque'] ?> <?php echo $vf['nomModele'] ?></h3>
@@ -167,55 +168,63 @@ session_start();
                                 <p>Kilométrages : <?php echo $vf['nbrKilometrage'] ?></p>
                                 <p>Année : <?php echo $vf['Annee'] ?></p>
                                 <p>Description :<?php echo $vf['Description'] ?></p>
-                                <p>Disponibilité :<?php echo $vf['dateDebut'] ?> ----> <?php echo $vf['dateFin'] ?></p>
+                                <p>Disponibilité :
+                                <?php foreach ($vf['dispo'] as $d) : ?>                                    
+                                        <ul>
+                                            <li><?php echo $d['dateDebut'] ?> ----> <?php echo $d['dateFin'] ?></li>
+                                        </ul>                                    
+                                <?php endforeach; ?>
+                                </p>
                                 <?php if (isset($resultatDistance)) : ?>
                                     <p>Distance : <?= $resultatDistance[$vf['idVehicule']] ?> Km</p>
                                 <?php endif; ?>
                                 <p>
                                     <a href="details-<?php echo $vf['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a> 
-                                    <a href="reserver.html" class="btn btn-default" role="button">Réserver</a>
+                                    <?php if (empty($_SESSION)): ?>
+
+                                    <?php elseif ($vf['idUtilisateur'] != $_SESSION['idUtilisateur']) : ?>
+                                        <a href="reserver-<?= $vf['idVehicule']; ?>.html" class="btn btn-default" role="button">Réserver</a>
+                                    <?php endif; ?>
                                 </p>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
-            <?php foreach ($vehicules as $vehicule): ?>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>
-                        <img src="img/<?php echo $vehicule['Image'] ?>" class="img-responsive" style="width: 100%; height: auto; display: block;"s>
-                        <div class="caption">       
-                            <p>Kilométrages : <?php echo $vehicule['nbrKilometrage'] ?></p>
-                            <p>Année : <?php echo $vehicule['Annee'] ?></p>
-                            <p>Description :<?php echo $vehicule['Description'] ?></p>
-                            <?php /*foreach ($dispos as $d) :*/?>
-                            <p>Disponibilité :
-                            <ul>
-                                <?php
-                                        foreach ($vehicule['dispo'] as $dispo)
-                                        {
-                                            echo '<li>'.$dispo['dateDebut']. " ----> " .$dispo['dateFin'].'</li>';
-                                        }
-                                ?>
-                                
-                            </ul>
-                            </p>
-                            <?php /*endforeach;*/ ?>
-                            <?php if (isset($resultatDistance)) : ?>
-                                <p>Distance : <?= $resultatDistance[$vehicule['idVehicule']] ?></p>
-                            <?php endif;?>
-                            <p></p>
-                            <p>
-                                <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a>                                
-                                <?php if($vehicule['idUtilisateur'] != $_SESSION['idUtilisateur']): ?>
-                                <a href="reserver-<?= $vehicule['idVehicule']; ?>.html" class="btn btn-default" role="button">Réserver</a>                                
-                                <?php endif; ?>                                                                
-                            </p>
+                <?php foreach ($vehicules as $vehicule): ?>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>
+                            <img src="img/<?php echo $vehicule['Image'] ?>" class="img-responsive" style="width: 100%; height: auto; display: block;"s>
+                            <div class="caption">       
+                                <p>Kilométrages : <?php echo $vehicule['nbrKilometrage'] ?></p>
+                                <p>Année : <?php echo $vehicule['Annee'] ?></p>
+                                <p>Description :<?php echo $vehicule['Description'] ?></p>
+
+                                <p>Disponibilité :
+                                <ul>
+                                    <?php foreach ($vehicule['dispo'] as $dispo) : ?>
+                                        <li><?= $dispo['dateDebut'] ?> ----> <?= $dispo['dateFin'] ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                </p>
+                                <?php /* endforeach; */ ?>
+                                <?php if (isset($resultatDistance)) : ?>
+                                    <p>Distance : <?= $resultatDistance[$vehicule['idVehicule']] ?></p>
+                                <?php endif; ?>
+                                <p></p>
+                                <p>
+                                    <a href="details-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-primary" role="button">Détails</a>                                
+                                    <?php if (empty($_SESSION)): ?>
+
+                                    <?php elseif ($vehicule['idUtilisateur'] != $_SESSION['idUtilisateur']) : ?>
+                                        <a href="reserver-<?= $vehicule['idVehicule']; ?>.html" class="btn btn-default" role="button">Réserver</a>
+                                    <?php endif; ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
     </div>        

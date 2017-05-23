@@ -28,7 +28,7 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
     $msgErrorNbrPlace ="";
     if($nbrPlace > 9 || $nbrPlace < 0){
         $msgErrorNbrPlace = "Le nombre de place n'est pas valide";
-        exit();
+       
     }
     
     //Fichier image//
@@ -38,7 +38,7 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
         //le fichier a bien été reçut
         if ($image['error'] != 0) {
             $msgErrorFile = "Erreur dans le transfert";
-            exit();
+            
         }
     }
     
@@ -46,13 +46,13 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
     $validType = array('image/jpeg', 'image/pjpeg', 'image/gif', 'image/png');
     if(!in_array($image['type'], $validType)){
         $msgErrorFile = "Format non supporté";
-        exit();
+        
     }
     
     //Vérification de la taille du fichier image
     if($image['size']> 5000000){
         $msgErrorFile = "Le format de l'image est trop grande";
-        exit();
+       
     }
 
 
@@ -62,8 +62,9 @@ if (filter_has_var(INPUT_POST, 'enregistrer')) {
     //Vérification des champs dates
     if ($dateFin < $dateDebut) {
         $msgError = "La date de fin ne peut pas être plus petite que la date de début";        
-    } else {
+    }
 
+    if(empty($msgError) && empty($msgErrorFile) && empty($nbrPlace)){
         louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image, $idMarque, $idModele, $idKilometrage, $idUtilisateur, $dateDebut, $dateFin, $longitude, $latitude);
         $type = NULL;
         $description = null;

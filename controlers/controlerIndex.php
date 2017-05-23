@@ -3,6 +3,8 @@
 require_once 'models/bddfunctions.php';
 require_once 'models/calculfunctions.php';
 
+session_start();
+
 if (filter_has_var(INPUT_POST, 'rechercher')) {
     $idMarque = trim(filter_input(INPUT_POST, 'marque', FILTER_SANITIZE_NUMBER_INT));
     $idModele = trim(filter_input(INPUT_POST, 'modele', FILTER_SANITIZE_NUMBER_INT));
@@ -35,7 +37,9 @@ if (filter_has_var(INPUT_POST, 'rechercher')) {
 
 $vehicules = recupereVehicules();
 
-
+if(!empty($_SESSION)){
+$reservation = recupereReservation($_SESSION['idUtilisateur']);
+}
 $marques = recupereMarques();
 $modeles = recupereModeles();
 $kilometrages = recupereKilometrages();

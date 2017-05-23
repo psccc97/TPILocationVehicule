@@ -3,29 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerAdmin.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerReserver.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerIndex.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerMesVehiculesReserve.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerSupprimer.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewMesVehiculesReserve.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerLouer.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewIndex.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewLouer.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/models/bddfunctions.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/models/flashmessage.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerModif.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewDetails.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerDetails.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/controlers/controlerMesVehiculesEnLocation.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewConnexion.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewMesVehiculesEnLocation.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewReservation.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/index.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/models/calculfunctions.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewModif.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/views/viewAdmin.php</file>
-            <file>file:/E:/application/UwAmp/www/TPILocationVehicule/include/navBar.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewCommentaire.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controlers/controlerDetails.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewLouer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controlers/controlerCommentaire.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/bddfunctions.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewModif.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewReservation.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controlers/controlerSupprimer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/models/connexionbdd.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewMesVehiculesReserve.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewDetails.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/views/viewIndex.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/controlers/controlerLouer.php</file>
+            <file>file:/H:/application/UwAmp/www/TPILocationVehicule/index.php</file>
         </group>
     </open-files>
 </project-private>

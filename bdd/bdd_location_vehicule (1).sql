@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Dim 14 Mai 2017 à 20:18
--- Version du serveur :  5.05.01
+-- Généré le :  Sam 20 Mai 2017 à 18:51
+-- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `bdd_location_vehicule`
@@ -31,6 +31,14 @@ CREATE TABLE `commentaires` (
   `Commentaire` text,
   `Note` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Contenu de la table `commentaires`
+--
+
+INSERT INTO `commentaires` (`idCommentaire`, `Commentaire`, `Note`) VALUES
+(1, 'sdafasdfasfsd', 3),
+(2, 'sdfgasdgdf', 4);
 
 -- --------------------------------------------------------
 
@@ -50,12 +58,9 @@ CREATE TABLE `disponibilites` (
 --
 
 INSERT INTO `disponibilites` (`idDisponibilite`, `dateDebut`, `dateFin`, `idVehicule`) VALUES
-(3, '2017-05-13', '2017-05-27', 9),
-(4, '2017-05-13', '2017-05-31', 10),
-(5, '2017-05-10', '2017-05-09', 11),
-(6, '2017-05-09', '2017-05-11', 12),
-(7, '2017-05-13', '2017-05-21', 13),
-(8, '2017-05-13', '2017-05-10', 14);
+(14, '2017-05-20', '2017-05-30', 10),
+(15, '2017-05-23', '2017-07-20', 11),
+(19, '2017-05-31', '2017-06-07', 10);
 
 -- --------------------------------------------------------
 
@@ -92,6 +97,14 @@ CREATE TABLE `location` (
   `idVehicule` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Contenu de la table `location`
+--
+
+INSERT INTO `location` (`dateDebut`, `dateFin`, `idUtilisateur`, `idCommentaire`, `idVehicule`) VALUES
+('2017-05-22', '2017-05-25', 1, 1, 11),
+('2017-05-21', '2017-05-27', 3, 2, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -111,16 +124,8 @@ INSERT INTO `marques` (`idMarque`, `nomMarque`) VALUES
 (1, 'Alfa Romeo'),
 (2, 'Opel'),
 (3, 'Guzzi'),
-(39, 'Chevrolet'),
-(40, 'Renault'),
-(41, 'Renault'),
 (42, 'Renault'),
-(43, 'Chevrolet'),
-(44, 'Chevrolet'),
-(45, 'dd'),
-(46, 'rezwetz'),
-(47, 'test'),
-(48, 'fg');
+(44, 'Chevrolet');
 
 -- --------------------------------------------------------
 
@@ -142,15 +147,7 @@ INSERT INTO `modeles` (`idModele`, `nomModele`) VALUES
 (2, 'Corsa'),
 (3, 'V9-Bobber'),
 (33, 'Camaro'),
-(34, 'Kagoo'),
-(35, 'Kagoo'),
-(36, 'Kagoo'),
-(37, 'Camaro'),
-(38, 'Camaro'),
-(39, 'fff'),
-(40, 'zwetz'),
-(41, 'saf'),
-(42, 'dfs');
+(36, 'Kagoo');
 
 -- --------------------------------------------------------
 
@@ -190,6 +187,8 @@ CREATE TABLE `vehicules` (
   `volumeUtile` int(11) DEFAULT NULL,
   `Motorisation` enum('Essence','Diesel','Gaz','Hybride','Electrique') NOT NULL,
   `Image` text NOT NULL,
+  `Longitude` float NOT NULL,
+  `Latitude` float NOT NULL,
   `idMarque` int(11) NOT NULL,
   `idModele` int(11) NOT NULL,
   `idKilometrage` int(11) NOT NULL,
@@ -200,16 +199,9 @@ CREATE TABLE `vehicules` (
 -- Contenu de la table `vehicules`
 --
 
-INSERT INTO `vehicules` (`idVehicule`, `Type`, `Description`, `Annee`, `Categorie`, `nbrPlace`, `volumeUtile`, `Motorisation`, `Image`, `idMarque`, `idModele`, `idKilometrage`, `idUtilisateur`) VALUES
-(3, 'Utilitaire', 'Voiture très confortable', 1999, 'Citadine', 5, 200, 'Hybride', 'peugot.png', 1, 1, 2, 1),
-(5, 'Voiture', 'Voiture rapide et assez neuve', NULL, 'Sportive', 4, 300, 'Electrique', 'voiture.png', 2, 2, 3, 3),
-(6, '2 roues', 'sdafasfsg', 2011, 'Citadine', 2, NULL, 'Essence', 'moto.jpg', 3, 3, 2, 3),
-(9, 'Utilitaire', 'sdfasfasdsdf', 2000, 'Citadine', 0, 600, 'Electrique', '5915c1ddcbd99renault-kangoo.jpg', 42, 36, 3, 1),
-(10, 'Voiture', '', 2016, 'Sportive', 0, 0, 'Electrique', '5915c27bb4df5Chevrolet_Camaro.JPG', 44, 38, 1, 1),
-(11, 'Utilitaire', 'default text', 2100, 'Citadine', 0, 0, 'Essence', '5915c589db62blocation-voiture-rentacar-citadine.png', 45, 39, 1, 1),
-(12, 'Utilitaire', 'default text', 2100, 'Citadine', 0, 0, 'Essence', '5915c9c1591a0Chevrolet_Camaro.JPG', 46, 40, 1, 1),
-(13, 'Voiture', 'dddddd', 2017, 'Citadine', 0, 16, 'Diesel', '5916408d12373tracteur.jpg', 47, 41, 3, 2),
-(14, 'Voiture', 'gfds', 2003, 'Sportive', 0, 44, 'Gaz', '5916413e70269logo.jpg', 48, 42, 3, 2);
+INSERT INTO `vehicules` (`idVehicule`, `Type`, `Description`, `Annee`, `Categorie`, `nbrPlace`, `volumeUtile`, `Motorisation`, `Image`, `Longitude`, `Latitude`, `idMarque`, `idModele`, `idKilometrage`, `idUtilisateur`) VALUES
+(10, 'Utilitaire', 'dsfasdf', 2002, 'Citadine', 0, 200, 'Diesel', '591eedf0dc48erenault-kangoo.jpg', 46.2053, 6.18894, 42, 36, 3, 2),
+(11, 'Voiture', 'sdfgdf', 2002, 'Citadine', 0, 20, 'Electrique', '591eeed351d85voiture.png', 46.1894, 6.10154, 2, 2, 1, 2);
 
 --
 -- Index pour les tables exportées
@@ -278,12 +270,12 @@ ALTER TABLE `vehicules`
 -- AUTO_INCREMENT pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  MODIFY `idCommentaire` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `disponibilites`
 --
 ALTER TABLE `disponibilites`
-  MODIFY `idDisponibilite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idDisponibilite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `kilometrages`
 --
@@ -293,12 +285,12 @@ ALTER TABLE `kilometrages`
 -- AUTO_INCREMENT pour la table `marques`
 --
 ALTER TABLE `marques`
-  MODIFY `idMarque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `idMarque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT pour la table `modeles`
 --
 ALTER TABLE `modeles`
-  MODIFY `idModele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idModele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
@@ -308,7 +300,7 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `vehicules`
 --
 ALTER TABLE `vehicules`
-  MODIFY `idVehicule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idVehicule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Contraintes pour les tables exportées
 --

@@ -36,7 +36,7 @@ and open the template in the editor.
                                     <td><?php echo $details['Categorie']; ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre de place<?= $details['nbrPlace']>1?'s':'' ?> </td>
+                                    <td>Nombre de place<?= $details['nbrPlace'] > 1 ? 's' : '' ?> </td>
                                     <td><?php echo $details['nbrPlace']; ?></td>
                                 </tr>
                                 <tr>
@@ -55,20 +55,26 @@ and open the template in the editor.
                                     <td>Description </td>
                                     <td><?php echo $details['Description']; ?></td>
                                 </tr>
-                                <?php foreach ($dispos as $dispo): ?>
-                                <tr>
+                                <tr> 
                                     <td>Disponibilité </td>
-                                    <td><?php echo $dispo['dateDebut']?> ----> <?php echo $dispo['dateFin'] ?></td>
+                                    <td>
+                                        <?php foreach ($dispos as $dispo): ?>
+
+
+                                            <ul>
+                                                <li><?php echo $dispo['dateDebut'] ?> ----> <?php echo $dispo['dateFin'] ?></li>
+                                            </ul>
+
+                                        <?php endforeach; ?>
+                                    </td> 
                                 </tr>
-                                <?php endforeach; ?>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6">
                         <h4>Commentaire et note</h4>
-                        <textarea class="form-control"  rows="14" disabled style="resize:none">
-                        
-                        </textarea>
+                        <textarea class="form-control"  rows="14" disabled style="resize:none"><?php foreach ($commentaires AS $comment) :?> <?= $comment['Prenom'] ?>  : 
+                  <?= $comment['Commentaire'] ?>               <?= $comment['Note'] ?><?php endforeach; ?></textarea>
                     </div>
                 </div>
             </div>

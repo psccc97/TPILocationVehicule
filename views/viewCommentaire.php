@@ -5,15 +5,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <?php include 'include/header.php'; ?>
     <head>
+        <?php include 'include/header.php'; ?>
         <meta charset="UTF-8">
         <title></title>
     </head>
-    <body>
-        <div class="container">
+   <div class="container">
             <?php include 'include/navBar.php'; ?>
-            <legend>Réservation</legend
+            <legend>Commentaire et note</legend
             <div class="thumbnail">
                 <div class="row">
                     <div class="col-md-3 col-xs-3"></div>
@@ -73,42 +72,39 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-6">
-                        <form class="form-horizontal" method="post"  action="reserver.html">
+                        <form class="form-horizontal" method="post"  action="commentaire.html">
 
-                            <!-- Date input Date début-->
+                            <!-- TextArea commentaire -->
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-4" for="marque">Date de début</label>
+                                    <label class="control-label col-md-4" for="commentaire">Commentaire</label>
                                 </div>
-                                <div class="controls col-md-4">
-                                    <input type="hidden" name="acienneDateDebut" value="<?= $vehicule['dateDebut'] ?>">
-                                    <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
+                                <div class="controls col-md-6">
+                                    <textarea class="form-control input-md" name="commentaire"></textarea>
                                 </div>
                             </div>
 
-                            <!-- Date input Date fin-->
+                            <!-- Select note-->
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-4" for="marque">Date de fin</label>
+                                    <label class="control-label col-md-2" for="note">Note</label>
                                 </div>
-                                <div class="controls col-md-4">
-                                    <input type="hidden" name="ancienneDateFin" value="<?= $vehicule['dateFin'] ?>">
-                                    <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" max="<?= $vehicule['dateFin'] ?>" required>
-                                    <?php if (isset($msgError)): ?>
-                                        <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
-                                    <?php endif; ?>
-                                    <?php if (isset($msgErrorDateDebut)): ?>
-                                        <p class="bg-danger text-danger"><?php echo $msgErrorDateDebut; ?></p>
-                                    <?php endif; ?>
-                                    <?php if(isset($msgErrorAncienneDateDebut)) :?>
-                                        <p class="bg-danger text-danger"><?= $msgErrorAncienneDateDebut ?></p>
-                                    <?php endif; ?>
+                                <div class="controls col-md-2">
+                                    <select id="note" name="note" class="form-control input-md">
+                                        <option selected="true" value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
+                                <div class="controls col-md-1">/5</div>
                             </div>
                             <input type="hidden" name="idVehicule" value="<?= $vehicule['idVehicule'] ?>">
                             <div class="form-group">
-                                <div class="cold-md-4">                                
-                                    <button id="reserver" class="btn btn-default" name="reserver">Réserver</button>
+                                <div class="cold-md-4">
+                                    <input type="submit" value="envoyer" id="envoyer" class="btn btn-default" name="envoyer">
                                 </div>
                             </div>
                         </form>
