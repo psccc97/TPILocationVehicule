@@ -74,7 +74,8 @@ and open the template in the editor.
                     <div class="col-md-6 col-xs-6">
                         <h4>Commentaire et note</h4>
                         <textarea class="form-control"  rows="14" disabled style="resize:none"><?php foreach ($commentaires AS $comment) :?> <?= $comment['Prenom'] ?>  : 
-                  <?= $comment['Commentaire'] ?>               <?= $comment['Note'] ?><?php endforeach; ?>/5</textarea>
+                  <?= $comment['Commentaire'] ?>               <?= "Note :". $comment['Note'] ."/5"."
+----------------------------------------------------------------------------------------------------"?><?php endforeach; ?></textarea>
                     </div>
                 </div>
             </div>
