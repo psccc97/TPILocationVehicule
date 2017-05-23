@@ -387,7 +387,9 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
     //Ajout d'un véhicule//
     $sql = "INSERT INTO vehicules(Type, Description, Annee, Categorie, nbrPlace, volumeUtile, Motorisation, Image, Longitude, Latitude, idMarque, idModele, idKilometrage, idUtilisateur)" .
             "VALUES(:type, :description, :annee, :categorie, :nbrPlace, :volumeUtile, :motorisation, :image, :longitude, :latitude, :idMarque, :idModele, :idKilomtrage, :idUtilisateur)";
+    
     $requete = $bdd->prepare($sql);
+    //Ajout de l'image dans le dossier img et renomage du fichier avec un unique id//
     $iduniq = uniqid();
     $nomImage = $image['name'];
     $destination = "img/" . $iduniq . $nomImage;

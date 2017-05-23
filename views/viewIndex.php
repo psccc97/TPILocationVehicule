@@ -192,6 +192,7 @@
                 <?php endforeach; ?>
             <?php else : ?>
                 <?php foreach ($vehicules as $vehicule): ?>
+            <?php //var_dump($vehicule); ?>
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <h3><?php echo $vehicule['nomMarque'] ?> <?php echo $vehicule['nomModele'] ?></h3>

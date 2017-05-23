@@ -8,6 +8,13 @@ if(filter_has_var(INPUT_POST, 'envoyer')){
     $note = filter_input(INPUT_POST, 'note', FILTER_VALIDATE_INT);
     $idVehicule = filter_input(INPUT_POST, 'idVehicule', FILTER_VALIDATE_INT);
     
+    if($commentaire == ""){
+        $commentaire = NULL;
+    }
+    if($note == ""){
+        $note = NULL;
+    }
+    
     ajouterCommentaireEtNote($commentaire, $note, $idVehicule, $_SESSION['idUtilisateur']);
     header('location:accueil.html');
     exit;

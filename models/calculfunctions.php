@@ -5,6 +5,7 @@
 //FONCTION DE CALCUL DE DISTANCE///////////////////////////////////////////////////////////////
 
 /**
+ * Fonction utiliser pour calculer la distance entre l'utilisateur et les véhicules
  * Lien : http://assemblysys.com/fr/calcul-de-distance-en-fonction-de-la-latitude-et-longitude-en-php/
  * @param type $point1_lat
  * @param type $point1_long
