@@ -28,7 +28,7 @@ and open the template in the editor.
                         <!-- Text input Marque-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="marque">Marque*</label>
+                            <label class="control-label col-md-2" for="marque">Marque *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select name="marque" required="" class="form-control input-md">                                    
@@ -48,7 +48,7 @@ and open the template in the editor.
                         <!-- Text input Modèle-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="modele">Modèle*</label>
+                            <label class="control-label col-md-2" for="modele">Modèle *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select name="modele" required="" class="form-control input-md">                                    
@@ -79,7 +79,7 @@ and open the template in the editor.
                         <!-- Select Basic Catégorie -->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="categorie">Catégorie*</label>
+                            <label class="control-label col-md-3" for="categorie">Catégorie *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="categorie" name="categorie" class="form-control input-md" required>
@@ -93,7 +93,7 @@ and open the template in the editor.
                         <!-- Number input Nombre de place-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="nbrPlace">Nombre de place</label>
+                            <label class="control-label col-md-4" for="nbrPlace">Nombre de place</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="nbrPalce" name="nbrPalce" type="number" placeholder="" class="form-control input-md" max="9" min="0" value="<?php if (isset($nbrPlace)) {echo $nbrPlace;}?>">
@@ -104,7 +104,7 @@ and open the template in the editor.
                         <!-- Number input Volume utile-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="volume">Volume utile</label>
+                            <label class="control-label col-md-4" for="volume">Volume utile</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="volume" name="volume" type="number" placeholder="" class="form-control input-md" min="0" value="<?php if (isset($volumeUtile)) {echo $volumeUtile;}?>"> m3
@@ -115,18 +115,18 @@ and open the template in the editor.
                         <!-- Date input Date début-->
                         <div class="form-group">
                             <div class="row">
-                                <label class="control-label col-md-4" for="dateDebut">Date de début*</label>
+                                <label class="control-label col-md-4" for="dateDebut">Date de début *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
-
+                                
                             </div>
                         </div>
 
                         <!-- Date input Date fin-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-4" for="dateFin">Date de fin*</label>
+                            <label class="control-label col-md-4" for="dateFin">Date de fin *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" required>
@@ -153,7 +153,7 @@ and open the template in the editor.
                         <!-- Select Basic Motorisation-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="motorisation">Motorisation*</label>
+                            <label class="control-label col-md-3" for="motorisation">Motorisation *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="motorisation" name="motorisation" class="form-control input-md" required>
@@ -169,7 +169,7 @@ and open the template in the editor.
                         <!-- Select Basic Kilométrage-->
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="kilometrage">Kilométrages*</label>
+                            <label class="control-label col-md-3" for="kilometrage">Kilométrages *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="kilometrage" name="kilometrage" class="form-control input-md" required>
@@ -187,7 +187,7 @@ and open the template in the editor.
                         <!-- Select Basic Type-->
                         <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="type">Type*</label>
+                            <label class="control-label col-md-2" for="type">Type *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <select id="type" name="type" class="form-control input-md">
@@ -201,18 +201,24 @@ and open the template in the editor.
                         <!-- Input Number Longitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="longitude">Longitude*</label>
+                            <label class="control-label col-md-3" for="longitude">Longitude *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($longitude)) {echo $longitude;}?>">
                             </div>
 
                         </div>
-
+                        
+                        <div class="row">
+                            <div class="control-label col-md-4">
+                                <b><a href="https://www.coordonnees-gps.fr/" class="text-primary"><p class="bg-info text-info">Trouver votre longitude latitude ici</p></a></b>
+                            </div>
+                        </div>
+                        
                         <!-- Input Number Latitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="latitude">Latitude*</label>
+                            <label class="control-label col-md-2" for="latitude">Latitude *</label>
                             </div>
                             <div class="controls col-md-4">
                                 <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($latitude)) {echo $latitude;}?>">
@@ -224,7 +230,7 @@ and open the template in the editor.
                         <!-- File Button Image--> 
                         <div class="control-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="image">Image*</label>
+                            <label class="control-label col-md-2" for="image">Image *</label>
                             </div>
                             <div class="controls col-md-8">
                                 <input id="image" name="image" accept="image/*" class="input-file" type="file" required>
@@ -240,9 +246,10 @@ and open the template in the editor.
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="enregistrer"></label>
                         <div class="col-md-4">
-                            <button id="enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button>
+                            <button id="enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button> <br/>                            
                         </div>
                     </div>
+                    
                </div>
                 </fieldset>
             </form>

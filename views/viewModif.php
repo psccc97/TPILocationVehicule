@@ -22,7 +22,7 @@
                             <label class="control-label col-md-2" for="marque">Marque</label>
                             </div>
                             <div class="controls col-md-4">
-                                <select id="marque" name="marque" class="input-large" required="">
+                                <select id="marque" name="marque" class="form-control input-large" required="">
                                 <?php foreach ($marques as $m) :?>
                                 <?php if($m['idMarque'] == $vehicule['idMarque']): ?>
                                 <option selected="true" value="<?php echo $m['idMarque'] ?>"><?= $m['nomMarque']?></option>
@@ -195,6 +195,12 @@
                                 <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?= $vehicule['Longitude'] ?>">
                             </div>
                             
+                        </div>
+                        
+                        <div class="row">
+                            <div class="control-label col-md-4">
+                                <b><a href="https://www.coordonnees-gps.fr/" class="text-primary"><p class="bg-info text-info">Trouver votre longitude latitude ici</p></a></b>
+                            </div>
                         </div>
                         
                         <!-- Input Number Latitude--> 

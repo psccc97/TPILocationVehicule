@@ -76,7 +76,7 @@ function recupereReservation($idUtilisateur) {
             . "AND v.idModele = mo.idModele "
             . "AND v.idKilometrage = k.idKilometrage "
             . "AND l.idUtilisateur = u.idUtilisateur "
-            . "AND l.idUtilisateur = :idUtilisateur";
+            . "AND l.idUtilisateur = :idUtilisateur ";
 
     $requete = $bdd->prepare($sql);
     $requete->bindParam(':idUtilisateur', $idUtilisateur);
@@ -307,7 +307,7 @@ function recupereVehiculesSelonRecherche($idMarque, $idModele, $idKilometrage, $
         $requete->bindParam(':volumeUtile', $volumeUtile);
     }
     if ($nbrPlace != "") {
-        $requete->bindParam(':nbrPlace', $nbrPlace, PDO::PARAM_INT);
+        $requete->bindParam(':nbrPlace', $nbrPlace);
     }
     if ($dateDebut != "" && $dateFin != "") {
         $requete->bindParam(':dateDebut', $dateDebut);
@@ -348,6 +348,7 @@ function ajouterCommentaireEtNote($commentaire, $note, $idVehicule, $idUtilisate
         $lastIdCommentaire = $bdd->lastInsertId();
     }
     
+	//Modification du champ idCommentaire
     $sql = "UPDATE location "
             . "SET idCommentaire = :idCommentaire "
             . "WHERE idVehicule = :idVehicule "
@@ -428,7 +429,7 @@ function louerVehicule($type, $description, $annee, $categorie, $nbrPlace, $volu
 
 
 /**
- * 
+ * Cette fonction me sert a ajouter une nouvel réservation
  * 
  * @param type $ancienneDateDebut
  * @param type $nouvelDateDebut
@@ -526,6 +527,33 @@ function supprimerVehicule($idVehicule) {
     return $reslt;
 }
 
+function annulerRéservation($ancienneDateDebut, $ancienneDateFin, $idVehicule, $idUtilisateur)
+{
+    $bdd = connexionBdd();
+    $sql = "DELETE FROM location "
+            . "WHERE idVehicule = :idVehicule "
+            . "AND idUtilisateur = :idUtilisateur";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':idVehicule', $idVehicule);
+    $requete->bindParam(':idUtilisateur', $idUtilisateur);
+    $requete->execute();
+    
+    $sql = "DELETE FROM disponibilites "
+            . "WHERE idVehicule = :idVehicule";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam(':idVehicule', $idVehicule);
+    $requete->execute();
+    
+    $sql = "INSERT INTO disponibilites (dateDebut, dateFin, idVehicule) "
+            . "VALUES (:ancienneDateDebut, :ancienneDateFin, :idVehicule)";
+    $requete = $bdd->prepare($sql);
+    $requete->bindParam('ancienneDateDebut', $ancienneDateDebut);
+    $requete->bindParam('ancienneDateFin', $ancienneDateFin);
+    $requete->bindParam('idVehicule', $idVehicule);
+    $requete->execute();
+}
+
+    
 
 //FONCTION DE MODIFICATION DE DONNEES/////////////////////////////////////////////////////////////////////////////////////
 function modifVehicule($idVehicule, $type, $description, $annee, $categorie, $nbrPlace, $volumeUtile, $motorisation, $image = "", $idMarque, $idModele, $idKilometrage, $dateDebut, $dateFin, $longitude, $latitude) {

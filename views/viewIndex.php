@@ -117,20 +117,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Longitude -->
-                    <div class="form-group">
-                        <label class="control-label" for="longitude">Votre longitude :</label>
-                        <div class="controls">
-                            <input id="longitude" type="number" name="longitude" class="form-control" min="0" step="any">                            
-                        </div>
-                    </div>
-                    <!-- Latitude -->
-                    <div class="form-group">
-                        <label class="control-label" for="latitude">Votre latitude :</label>
-                        <div class="controls">
-                            <input id="latitude" type="number" name="latitude" class="form-control" min="0" step="any">                            
-                        </div>
-                    </div>
+                    <div class="col-md-6">
 
                     <!-- Date input Date début-->
                     <div class="form-group">
@@ -151,10 +138,34 @@
                                 <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                             <?php endif; ?>
                         </div>
-                    </div>        
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <!-- Longitude -->
+                        <div class="form-group">
+                            <label class="control-label" for="longitude">Votre longitude :</label>                        
+                            <div class="controls">                                
+                                <input id="longitude" type="number" name="longitude" class="form-control" min="0" step="any">                                                            
+                            </div>
+                        </div>
+                    <!-- Latitude -->
+                        <div class="form-group">
+                            <label class="control-label" for="latitude">Votre latitude :</label>
+                            <div class="controls">
+                                <input id="latitude" type="number" name="latitude" class="form-control" min="0" step="any">                            
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary">                                                   
+                <div class="col-md-7"></div>
+                <div class="col-md-3">
+                    <b><a href="https://www.coordonnees-gps.fr/" class="text-primary"><p class="text-info bg-info">Trouver votre longitude latitude ici</p></a></b>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    <input type="submit" name="rechercher" value="Rechercher" class="btn btn-primary">                                                   
+                    </div>
+                </div>
             </form>
 
 

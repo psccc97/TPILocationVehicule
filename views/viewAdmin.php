@@ -9,7 +9,7 @@ and open the template in the editor.
     <body>
         <div class="container">
             <?php include 'include/navBar.php'; ?>
-            <legend>Mes véhicules en location</legend>
+            <legend>Administrateur</legend>
             <?php foreach ($vehicules as $vehicule) : ?>
                 <div class="thumbnail">
                     <div class="row">
@@ -60,6 +60,10 @@ and open the template in the editor.
                             <a href="supprimer-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-danger">Supprimer</a><br/>
                             <br/>
                             <a href="modificaton-<?php echo $vehicule['idVehicule'];?>.html" class="btn btn-success">Modifier</a>
+                            <?php if (!empty($msgErrorSuppression)): ?>
+                                <br/>
+                                <p class="bg-danger text-danger"><?= $msgErrorSuppression; ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>      
                 </div>

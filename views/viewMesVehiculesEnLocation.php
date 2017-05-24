@@ -80,7 +80,7 @@ and open the template in the editor.
                             <a href="modificaton-<?php echo $vehicule['idVehicule']; ?>.html" class="btn btn-success">Modifier</a><br/>
                             <?php if (!empty($msgErrorSuppression)): ?>
                                 <br/>
-                                <p><?= $msgErrorSuppression; ?></p>
+                                <p class="bg-danger text-danger"><?= $msgErrorSuppression; ?></p>
                             <?php endif; ?>
                         </div>
                     </div>      

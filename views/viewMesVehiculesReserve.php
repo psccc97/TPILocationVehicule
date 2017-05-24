@@ -16,6 +16,7 @@ and open the template in the editor.
             <legend>Mes véhicules réservés</legend>
             <?php foreach ($vehiculesReserver as $vr) :?>
             <div class="thumbnail">
+                <form method="post" actio="mesvehiculesreserver.html">
                 <div class="row">
                     <div class="col-sm-5 col-xs-5">
                         <h3><?php echo $vr['nomMarque'] ?> <?php echo $vr['nomModele'] ?></h3>
@@ -62,17 +63,20 @@ and open the template in the editor.
                                     <td><?= $vr['dateDebut'] ?> -----> <?= $vr['dateFin'] ?></td>
                                 </tr>
                                 <tr>
-
+                                <input type="hidden" name="idVehicule" value="<?= $vr['idVehicule'] ?>">
+                                <input type="hidden" name="dateDebut" value="<?= $vr['dateDebut'] ?>">
+                                <input type="hidden" name="dateFin" value="<?= $vr['dateFin'] ?>">
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="col-sm-3 col-xs-3">
-                        <a href="" class="btn btn-danger">Annuler</a><br/>
+                        <input type="submit" name="annuler" value="Annuler" class="btn btn-danger"><br/>
                         <br/>
                         <a href="commentaire-<?= $vr['idVehicule'] ?>.html" class="btn btn-success">Commenter</a><br/>                    
                     </div>
-                </div>      
+                </div>
+                </form>
             </div>
             <?php endforeach; ?>
         </div>

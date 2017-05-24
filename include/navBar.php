@@ -16,7 +16,7 @@
                                 <a href="mesvehiculesenlocation.html">Mes véhicules en location</a>
                             </li>
                             <li>
-                                <a href="mesvehiculesreserver.html">Mes véhicules reservés</a>
+                                <a href="mesvehiculesreserver.html">Mes véhicules réservés</a>
                             </li>
                             <li>
                                 <a href="louer.html"> Mettre en location</a>

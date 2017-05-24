@@ -1,6 +1,7 @@
 <?php
 require_once 'models/flashmessage.php';
 require_once 'models/bddfunctions.php';
+session_start();
 $idVehicule = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if ($idVehicule != false) {
     $vehicule = recupereVehicleSelonId($idVehicule);
@@ -20,7 +21,12 @@ if ($idVehicule != false) {
         
     }
 }
-header('location:mesvehiculesenlocation.html');
+if($_SESSION['statuts'] == '0'){
+    header('location:mesvehiculesenlocation.html');
+}  else {
+    header('location:admin.html');
+}
+
 exit;
 
 
