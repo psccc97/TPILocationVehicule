@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/bddfunctions.php';
+require_once 'models/flashmessage.php';
 
 session_start();
 if(filter_has_var(INPUT_POST, 'envoyer')){
@@ -8,12 +9,20 @@ if(filter_has_var(INPUT_POST, 'envoyer')){
     $note = filter_input(INPUT_POST, 'note', FILTER_VALIDATE_INT);
     $idVehicule = filter_input(INPUT_POST, 'idVehicule', FILTER_VALIDATE_INT);
     
+    if($commentaires == "" && $note == ""){
+        $msgError = "Aucun champs n'a été saisi";
+        SetFlashMessage($msgError);
+        header("location:commentaire-".$idVehicule.".html");
+        exit;
+    }
+    
     if($commentaire == ""){
         $commentaire = NULL;
     }
     if($note == ""){
         $note = NULL;
     }
+    
     
     ajouterCommentaireEtNote($commentaire, $note, $idVehicule, $_SESSION['idUtilisateur']);
     header('location:accueil.html');

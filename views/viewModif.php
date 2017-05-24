@@ -186,13 +186,14 @@
                             </div>
                         </div>
                         
-                        <!-- Input Number Longitude--> 
-                       <div class="form-group">
+                        <!-- Input Number Latitude--> 
+                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="longitude">Longitude</label>
+                            <label class="control-label col-md-2" for="latitude">Latitude</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?= $vehicule['Longitude'] ?>">
+                                <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php echo $vehicule['Latitude'] ?>">
+                                
                             </div>
                             
                         </div>
@@ -203,14 +204,15 @@
                             </div>
                         </div>
                         
-                        <!-- Input Number Latitude--> 
-                        <div class="form-group">
+                        
+                        
+                        <!-- Input Number Longitude--> 
+                       <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="latitude">Latitude</label>
+                            <label class="control-label col-md-2" for="longitude">Longitude</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php echo $vehicule['Latitude'] ?>">
-                                
+                                <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?= $vehicule['Longitude'] ?>">
                             </div>
                             
                         </div>

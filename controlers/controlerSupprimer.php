@@ -21,7 +21,7 @@ if ($idVehicule != false) {
         
     }
 }
-if($_SESSION['statuts'] == '0'){
+if($_SESSION['status'] == '0'){
     header('location:mesvehiculesenlocation.html');
 }  else {
     header('location:admin.html');

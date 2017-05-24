@@ -6,7 +6,10 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <?php include 'include/header.php'; ?>
+        <?php        
+        $msgError = GetFlashMessage();
+        include 'include/header.php'; 
+        ?>
         <meta charset="UTF-8">
         <title></title>
     </head>
@@ -104,9 +107,12 @@ and open the template in the editor.
                             <input type="hidden" name="idVehicule" value="<?= $vehicule['idVehicule'] ?>">
                             <div class="form-group">
                                 <div class="cold-md-4">
-                                    <input type="submit" value="envoyer" id="envoyer" class="btn btn-default" name="envoyer">
+                                    <input type="submit" value="Envoyer" id="envoyer" class="btn btn-default" name="envoyer">
                                 </div>
                             </div>
+                            <?php if(!empty($msgError)) :?>
+                            <p class="bg-danger text-danger"><?= $msgError ?></p>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>

@@ -198,13 +198,14 @@ and open the template in the editor.
                             </div>
                         </div>
 
-                        <!-- Input Number Longitude--> 
+                         <!-- Input Number Latitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-3" for="longitude">Longitude *</label>
+                            <label class="control-label col-md-2" for="latitude">Latitude *</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($longitude)) {echo $longitude;}?>">
+                                <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($latitude)) {echo $latitude;}?>">
+
                             </div>
 
                         </div>
@@ -215,14 +216,15 @@ and open the template in the editor.
                             </div>
                         </div>
                         
-                        <!-- Input Number Latitude--> 
+                       
+                        
+                        <!-- Input Number Longitude--> 
                        <div class="form-group">
                             <div class="row">
-                            <label class="control-label col-md-2" for="latitude">Latitude *</label>
+                            <label class="control-label col-md-3" for="longitude">Longitude *</label>
                             </div>
                             <div class="controls col-md-4">
-                                <input id="latitude" name="latitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($latitude)) {echo $latitude;}?>">
-
+                                <input id="longitude" name="longitude" class="form-control input-md" type="number" required="" min="0" step="any" value="<?php if (isset($longitude)) {echo $longitude;}?>">
                             </div>
 
                         </div>
