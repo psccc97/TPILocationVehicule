@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Script : controler controlerConnexion.php
+ * Auteur: Pascucci Lino
+ * Date: 19.05.2017
+ * Description :controleur pour la page connexion1111
+*/
+
 require_once 'models/bddfunctions.php';
 
 if (filter_has_var(INPUT_POST, 'connexion')) {

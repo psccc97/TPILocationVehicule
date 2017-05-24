@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * Script : controler controlerCommentaire.php
+ * Auteur: Pascucci Lino
+ * Date: 19.05.2017
+ * Description :controleur pour la page commentaire
+*/
+
 require_once 'models/bddfunctions.php';
 require_once 'models/flashmessage.php';
 

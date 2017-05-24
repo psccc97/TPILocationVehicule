@@ -200,7 +200,7 @@
                         
                         <div class="row">
                             <div class="control-label col-md-4">
-                                <b><a href="https://www.coordonnees-gps.fr/" class="text-primary"><p class="bg-info text-info">Trouver votre longitude latitude ici</p></a></b>
+                                <b><a href="https://www.coordonnees-gps.fr/" class="text-primary" target="_blank"><p class="bg-info text-info">Trouver votre longitude latitude ici</p></a></b>
                             </div>
                         </div>
                         

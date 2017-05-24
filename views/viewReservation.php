@@ -82,7 +82,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="controls col-md-4">
                                     <input type="hidden" name="acienneDateDebut" value="<?= $vehicule['dateDebut'] ?>">
-                                    <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">
+                                    <input id="dateDebut" name="dateDebut" type="date" class="form-control input-md" required min="<?php echo date("Y-m-d"); ?>">                                    
                                 </div>
                             </div>
 
@@ -94,6 +94,9 @@ and open the template in the editor.
                                 <div class="controls col-md-4">
                                     <input type="hidden" name="ancienneDateFin" value="<?= $vehicule['dateFin'] ?>">
                                     <input id="dateFin" name="dateFin" type="date" placeholder="" class="form-control input-md" max="<?= $vehicule['dateFin'] ?>" required>
+                                    <?php if (isset($msgErrorDate)): ?>
+                                        <p class="bg-danger text-danger"><?php echo $msgErrorDate; ?></p>
+                                    <?php endif; ?>
                                     <?php if (isset($msgError)): ?>
                                         <p class="bg-danger text-danger"><?php echo $msgError; ?></p>
                                     <?php endif; ?>

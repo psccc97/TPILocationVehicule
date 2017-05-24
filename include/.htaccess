@@ -1,11 +1,1 @@
-#follow symbolics links
-Options +FollowSymlinks
-
-#Enable rewrite module
-RewriteEngine on
-
-#Action without id
-RewriteRule ^([a-zA-Z]+).html index.php?action=$1 [L]
-
-#Action with id
-RewriteRule ^([a-zA-Z]+)-([0-9]+).html index.php?action=$1&id=$2 [L]
+deny from all
